@@ -5,3 +5,5 @@
 * 4 core CPU (AMD)
 * 16GB RAM
 * 1TB NVME SSD
+
+### Node Standup?
