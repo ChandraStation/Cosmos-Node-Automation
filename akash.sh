@@ -36,7 +36,7 @@ while true; do
                 sudo rm akash_0.14.1_linux_amd64.zip
                 mv akash_0.14.1_linux_amd64/akash /usr/bin/
                 sudo rm -i -rf akash_0.14.1_linux_amd64/
-                akash init <node> --chain-id akashnet-2
+                akash init node --chain-id akashnet-2
                 sed -i 's/seeds = ""/seeds ="27eb432ccd5e895c5c659659120d68b393dd8c60@35.247.65.183:26656,8e2f56098f182ffe2f6fb09280ba" ~/.akash/config/config.toml
                 sed -i 's/persistent_peers = ""/persistent_peers = "27eb432ccd5e895c5c659659120d68b393dd8c60@35.247.65.183:26656,47c9a" ~/.akash/config/config.toml
                 sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.01uakt"/g' ~/.akash/config/app.toml
