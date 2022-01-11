@@ -5,8 +5,8 @@ while true; do
     case $yn in
         [Yy]* ) pacman -Syyu aria2 atop autoconf automake base binutils bison bmon btrfs-progs btop clang cronie cryptsetup docker dstat fakeroot flex gcc git go gptfdisk groff grub haveged htop iftop iptraf-ng jq llvm lvm2 m4 make mdadm neovim net-tools nethogs openssh patch pkgconf python rsync rustup screen sudo texinfo unzip vi vim vnstat wget which xfsprogs hddtemp python-setuptools npm python-bottle python-docker python-matplotlib python-netifaces python-zeroconf python-pystache time nload nmon glances gtop bwm-ng bpytop duf go-ipfs fish pigz zerotier-one sysstat github-cli pm2; break;;
         [Nn]* ) break;;
-	[Ss]* ) exit;;
-        * ) echo "Please answer yes or no.";;
+	    [Ss]* ) exit;;
+        * ) echo "Please answer yes no or stop.";;
     esac
 done
 
@@ -15,8 +15,8 @@ while true; do
     case $yn in
         [Yy]* ) apt-get update -y && apt install wget curl gcc make snap; break;;
         [Nn]* ) break;;
-	[Ss]* ) exit;;
-        * ) echo "Please answer yes or no.";;
+	    [Ss]* ) exit;;
+        * ) echo "Please answer yes no or stop.";;
     esac
 done
 
@@ -25,8 +25,8 @@ while true; do
     case $yn in
         [Yy]* ) snapd install go --classic; break;;
         [Nn]* ) break;;
-	[Ss]* ) exit;;
-        * ) echo "Please answer yes or no.";;
+	    [Ss]* ) exit;;
+        * ) echo "Please answer yes no or stop.";;
     esac
 done
 
@@ -77,11 +77,11 @@ while true; do
     read -p "Snapshot 4 Akash bb?" yn
     case $yn in
         [Yy]* ) rm ~/.akash/data/priv_validator_state.json
-		wget http://135.181.60.250/akash/akashnet-2_2022-01-10.tar -P ~/.akash/data
+		wget http://135.181.60.250/akash/akashnet-2_$(date +"%Y-%m-%d").tar -P ~/.akash/data
 		tar -xvf ~/.akash/data break;;
         [Nn]* ) break;;
         [Ss]* ) exit;;
-        * ) echo "Please answer yes or no.";;
+        * ) echo "Please answer yes no or stop.";;
     esac
 done
 
