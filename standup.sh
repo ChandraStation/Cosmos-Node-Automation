@@ -4,7 +4,8 @@ while true; do
     read -p "Is this a new Archlinux server?" yn
     case $yn in
         [Yy]* ) pacman -Syyu aria2 atop autoconf automake base binutils bison bmon btrfs-progs btop clang cronie cryptsetup docker dstat fakeroot flex gcc git go gptfdisk groff grub haveged htop iftop iptraf-ng jq llvm lvm2 m4 make mdadm neovim net-tools nethogs openssh patch pkgconf python rsync rustup screen sudo texinfo unzip vi vim vnstat wget which xfsprogs hddtemp python-setuptools npm python-bottle python-docker python-matplotlib python-netifaces python-zeroconf python-pystache time nload nmon glances gtop bwm-ng bpytop duf go-ipfs fish pigz zerotier-one sysstat github-cli pm2; break;;
-        [Nn]* ) exit;;
+        [Nn]* ) break;;
+	[Ss]* ) exit;;
         * ) echo "Please answer yes or no.";;
     esac
 done
@@ -13,16 +14,18 @@ while true; do
     read -p "Is this a new Ubuntu server?" yn
     case $yn in
         [Yy]* ) apt-get update -y && apt install wget curl gcc make snap; break;;
-        [Nn]* ) exit;;
+        [Nn]* ) break;;
+	[Ss]* ) exit;;
         * ) echo "Please answer yes or no.";;
     esac
 done
 
 while true; do
-    read -p "Need golang?" yn
+    read -p "Need golang on Ubuntu?" yn
     case $yn in
         [Yy]* ) snapd install go --classic; break;;
-        [Nn]* ) exit;;
+        [Nn]* ) break;;
+	[Ss]* ) exit;;
         * ) echo "Please answer yes or no.";;
     esac
 done
