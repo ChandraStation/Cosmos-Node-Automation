@@ -73,3 +73,15 @@ while true; do
     esac
 done
 
+while true; do
+    read -p "Snapshot 4 Akash bb?" yn
+    case $yn in
+        [Yy]* ) rm ~/.akash/data/priv_validator_state.json
+		wget http://135.181.60.250/akash/akashnet-2_2022-01-10.tar -P ~/.akash/data
+		tar -xvf ~/.akash/data break;;
+        [Nn]* ) break;;
+        [Ss]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
