@@ -22,6 +22,13 @@ Use these bash scripts to automate the installation and initilization of various
 
 (Feel free to upkeep the repo with up to date links to genesis & software versions)
 
+### Workflows
+#### Chalabi
+* Integreate the reamining networks
+#### Bailey
+* Iterate the node name function
+
+
 ## License
 
 MIT Baby
