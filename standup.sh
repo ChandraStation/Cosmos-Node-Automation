@@ -23,7 +23,7 @@ EOF
 # OS Select 
 
 PS3='Select your OS: '
-options=("Arch Linux" "Ubuntu" "Quit" "My OS is set up")
+options=("Arch Linux" "Ubuntu" "My OS is set up" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
