@@ -67,7 +67,6 @@ do
                                         sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.01uakt"/g' ~/.akash/config/app.toml
                                         sudo rm -i ~/.akash/config/genesis.json
                                         wget https://github.com/ovrclk/net/raw/master/mainnet/genesis.json ~/.akash/config/
-                                        akash start
                                         cat > /etc/systemd/system/akash.service
                                         echo "[Unit]
                                         Description=Akash Node
@@ -117,7 +116,6 @@ do
                                         sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.01uhuahua"/g' ~/.chihuahua/config/app.toml
                                         sudo rm -i ~/.chihuahua/config/genesis.json
                                         wget https://github.com/ChihuahuaChain/mainnet/blob/main/genesis.json~/.chihuahua/config/
-                                        chihuahua start
                                         cat > /etc/systemd/system/chihuahua.service
                                         echo "[Unit]
                                         Description=Chihuahua Node
