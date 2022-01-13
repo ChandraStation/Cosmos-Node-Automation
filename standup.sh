@@ -23,7 +23,7 @@ EOF
 # OS Select 
 
 PS3='Select your OS: '
-options=("Arch Linux" "Ubuntu" "Quit")
+options=("Arch Linux" "Ubuntu" "Quit" "My OS is set up")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -34,6 +34,8 @@ do
         "Ubuntu")
             apt-get update -y && apt install -y tar unzip wget curl gcc make snap && snapd install go --classic; break;;
 
+	"My OS is set up")
+		break;;
         "Quit")
             exit;;
 
