@@ -1,39 +1,48 @@
 #!/bin/bash
 
-#Archlinux Setup
-while true; do
-    read -p "Is this a new Archlinux server?" yn
-    case $yn in
-        [Yy]* ) pacman -Syyu aria2 atop autoconf automake base binutils bison bmon btrfs-progs btop clang cronie cryptsetup docker dstat fakeroot flex gcc git go gptfdisk groff grub haveged htop iftop iptraf-ng jq llvm lvm2 m4 make mdadm neovim net-tools nethogs openssh patch pkgconf python rsync rustup screen sudo texinfo unzip vi vim vnstat wget which xfsprogs hddtemp python-setuptools npm python-bottle python-docker python-matplotlib python-netifaces python-zeroconf python-pystache time nload nmon glances gtop bwm-ng bpytop duf go-ipfs fish pigz zerotier-one sysstat github-cli pm2; break;;
-        [Nn]* ) break;;
-	    [Ss]* ) exit;;
-        * ) echo "Please answer yes no or stop.";;
+cat << "EOF"
+
+░█████╗░██╗░░██╗░█████╗░███╗░░██╗██████╗░██████╗░░█████╗░  ░██████╗████████╗░█████╗░████████╗██╗░█████╗░███╗░░██╗
+██╔══██╗██║░░██║██╔══██╗████╗░██║██╔══██╗██╔══██╗██╔══██╗  ██╔════╝╚══██╔══╝██╔══██╗╚══██╔══╝██║██╔══██╗████╗░██║
+██║░░╚═╝███████║███████║██╔██╗██║██║░░██║██████╔╝███████║  ╚█████╗░░░░██║░░░███████║░░░██║░░░██║██║░░██║██╔██╗██║
+██║░░██╗██╔══██║██╔══██║██║╚████║██║░░██║██╔══██╗██╔══██║  ░╚═══██╗░░░██║░░░██╔══██║░░░██║░░░██║██║░░██║██║╚████║
+╚█████╔╝██║░░██║██║░░██║██║░╚███║██████╔╝██║░░██║██║░░██║  ██████╔╝░░░██║░░░██║░░██║░░░██║░░░██║╚█████╔╝██║░╚███║
+░╚════╝░╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚══╝╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝  ╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝░░░╚═╝░░░╚═╝░╚════╝░╚═╝░░╚══╝
+
+
+███╗░░██╗░█████╗░██████╗░███████╗  ███╗░░░███╗░█████╗░███╗░░██╗░█████╗░░██████╗░███████╗██████╗░
+████╗░██║██╔══██╗██╔══██╗██╔════╝  ████╗░████║██╔══██╗████╗░██║██╔══██╗██╔════╝░██╔════╝██╔══██╗
+██╔██╗██║██║░░██║██║░░██║█████╗░░  ██╔████╔██║███████║██╔██╗██║███████║██║░░██╗░█████╗░░██████╔╝
+██║╚████║██║░░██║██║░░██║██╔══╝░░  ██║╚██╔╝██║██╔══██║██║╚████║██╔══██║██║░░╚██╗██╔══╝░░██╔══██╗
+██║░╚███║╚█████╔╝██████╔╝███████╗  ██║░╚═╝░██║██║░░██║██║░╚███║██║░░██║╚██████╔╝███████╗██║░░██║
+╚═╝░░╚══╝░╚════╝░╚═════╝░╚══════╝  ╚═╝░░░░░╚═╝╚═╝░░╚═╝╚═╝░░╚══╝╚═╝░░╚═╝░╚═════╝░╚══════╝╚═╝░░╚═╝
+                                                                                                                                                                              
+
+EOF
+
+# OS Select 
+
+PS3='Select your OS: '
+options=("Arch Linux" "Ubuntu" "Quit")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "Arch Linux")
+            pacman -Syyu aria2 atop autoconf automake base binutils bison bmon btrfs-progs btop clang cronie cryptsetup docker dstat fakeroot flex gcc git go gptfdisk groff grub haveged htop iftop iptraf-ng jq llvm lvm2 m4 make mdadm neovim net-tools nethogs openssh patch pkgconf python rsync rustup screen sudo texinfo unzip vi vim vnstat wget which xfsprogs hddtemp python-setuptools npm python-bottle python-docker python-matplotlib python-netifaces python-zeroconf python-pystache time nload nmon glances gtop bwm-ng bpytop duf go-ipfs fish pigz zerotier-one sysstat github-cli pm2; break;;
+
+
+        "Ubuntu")
+            apt-get update -y && apt install -y tar unzip wget curl gcc make snap && snapd install go --classic; break;;
+
+        "Quit")
+            exit;;
+
     esac
 done
 
-#Ubuntu Setup
-while true; do
-    read -p "Is this a new Ubuntu server?" yn
-    case $yn in
-        [Yy]* ) apt-get update -y && apt install wget curl gcc make snap; break;;
-        [Nn]* ) break;;
-	    [Ss]* ) exit;;
-        * ) echo "Please answer yes no or stop.";;
-    esac
-done
+# Network Select
 
-#Golang install for Ubuntu
-while true; do
-    read -p "Need golang on Ubuntu?" yn
-    case $yn in
-        [Yy]* ) snapd install go --classic; break;;
-        [Nn]* ) break;;
-	    [Ss]* ) exit;;
-        * ) echo "Please answer yes no or stop.";;
-    esac
-done
-
-PS3='Please enter your choice: '
+PS3='Select a network: '
 options=("Akash" "Sentinel" "Chihuahua" "Comdex" "Dig" "e-Money" "G-Bridge" "Omniflix" "Osmosis" "Sentinel" "Quit")
 select opt in "${options[@]}"
 do
@@ -75,6 +84,9 @@ do
 
                                         [Install]
                                         WantedBy=multi-user.target" > /etc/systemd/system/akash.service
+                                        rm ~/.akash/data/priv_validator_state.json
+                                        wget http://135.181.60.250/akash/akashnet-2_$(date +"%Y-%m-%d").tar -P ~/.akash/data
+                                        tar -xvf ~/.akash/data/akashnet-2_$(date +"%Y-%m-%d").tar
                                         sudo systemctl enable akash
                                         sudo systemctl daemon-reload
                                         sudo systemctl start akash && journalctl -u akash -f; break;;
@@ -120,23 +132,4 @@ do
     esac
 done
 
-#Akash Snapshot
-#while true; do
-#    read -p "Snapshot 4 Akash bb?" yn
-#    case $yn in
-#        [Yy]* ) rm ~/.akash/data/priv_validator_state.json
-#                wget http://135.181.60.250/akash/akashnet-2_$(date +"%Y-%m-%d").tar -P ~/.akash/data
-#                tar -xvf ~/.akash/data break;;
-#        [Nn]* ) break;;
-#        [Ss]* ) exit;;
-#        * ) echo "Please answer yes no or stop.";;
-#    esac
-#done
-
-#Chihuahua Node
-#Comdex Node
-#Dig Node
-#E-Money Node
-#G-Bridge Node
-#Sentinel Node
-#Osmosis Node
+echo "Delegate to Chandra Station"
