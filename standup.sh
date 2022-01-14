@@ -278,34 +278,35 @@ do
                 do
                     case $opt in
                                 "Akash")
-                                    sudo journalctl -u akash -f; break;;
+                                        sudo journalctl -u akash -f; break;;
             
                                 "Chihuahua")
-			                        sudo journalctl -u chihuahua -f; break;;
+			                sudo journalctl -u chihuahua -f; break;;
 
                                 "Comdex")
-                                    sudo journalctl -u comdex -f; break;;
+                                        sudo journalctl -u comdex -f; break;;
             
                                 "Dig")
-                                    sudo journalctl -u dig -f; break;;
+                                        sudo journalctl -u dig -f; break;;
 
                                 "e-Money")
-                                    sudo journalctl -u e-Money -f; break;;
+                                        sudo journalctl -u e-Money -f; break;;
 
                                 "G-Bridge")
-                                    sudo journalctl -u G-Bridge -f; break;;
+                                        sudo journalctl -u G-Bridge -f; break;;
 
                                 "Omniflix")
-                                    sudo journalctl -u omniflix -f; break;;
+                                        sudo journalctl -u omniflix -f; break;;
 
                                 "Osmosis")
-                                    sudo journalctl -u osmosis -f; break;;
+                                        sudo journalctl -u osmosis -f; break;;
 
                                 "Sentinel")
-                                    sudo journalctl -u sentinel -f; break;;
+                                        sudo journalctl -u sentinel -f; break;;
 
-                                "Quit")
-                                    exit;;
+                                "Quit");;
+                                        echo "Please select a network from the previous section:"
+                                        break;;
                 esac
             done    
             ;;

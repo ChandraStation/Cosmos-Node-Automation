@@ -37,7 +37,7 @@ Use these bash scripts to automate the installation and initilization of various
 - [x] Add Akash  
 - [x] Add Multi Network Select
 - [x] Add node name selection
-- [ ] Add go back
+- [x] Add go back
 - [ ] Add Progress Bar
 - [ ] Create loop
 
