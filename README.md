@@ -25,6 +25,7 @@ Use these bash scripts to automate the installation and initilization of various
 ## To do
 #### CHalabi
 
+- [x] Add OS Select
 - [ ] Iterate remainder  of networks
 - [x] ASCII
 - [x] Remove Yes/No
@@ -33,8 +34,12 @@ Use these bash scripts to automate the installation and initilization of various
 
 #### Bailey
 
+- [x] Add Akash  
+- [x] Add Multi Network Select
 - [x] Add node name selection
 - [ ] Add go back
+- [ ] Add Progress Bar
+- [ ] Create loop
 
 ## License
 
