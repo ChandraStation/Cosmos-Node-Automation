@@ -77,8 +77,8 @@ do
 
                                         [Service]
                                         Type=simple
-                                        User=root
-                                        WorkingDirectory=/root/
+                                        User=$(whoami)
+                                        WorkingDirectory=~/
                                         ExecStart=/usr/bin/akash start
                                         Restart=on-failure
                                         StartLimitInterval=0
@@ -131,8 +131,8 @@ do
 
                                         [Service]
                                         Type=simple
-                                        User=root
-                                        WorkingDirectory=/root/
+                                        User=$(whoami)
+                                        WorkingDirectory=~/
                                         ExecStart=/usr/bin/chihuahua start
                                         Restart=on-failure
                                         StartLimitInterval=0
@@ -181,7 +181,7 @@ do
                                         [Service]
                                         Type=simple
                                         User=$(whoami)
-                                        WorkingDirectory=/root/
+                                        WorkingDirectory=~/
                                         ExecStart=/usr/bin/comdex start
                                         Restart=on-failure
                                         StartLimitInterval=0
@@ -199,8 +199,44 @@ do
                                         sudo systemctl start comdex && journalctl -u comdex -f; break;;
             
         "Dig")
-            echo "you chose choice $REPLY which is $opt"
-            ;;
+                                        git clone https://github.com/osmosis-labs/osmosis
+                                        cd osmosis
+                                        git checkout v6.1.0
+                                        make install
+                                        cp ~/go/bin/osmosisd /usr/bin/osmosisd
+					echo "What would you like your node name to be?"
+					read NAME
+					echo "Your node $NAME is now set"
+                                        osmosisd init $NAME
+                                        sed -i 's/seeds = ""/seeds ="6bcdbcfd5d2c6ba58460f10dbcfde58278212833@osmosis.artifact-staking.io:26656" ~/.osmosis/config/config.toml
+                                        sed -i 's/persistent_peers = ""/persistent_peers = "8d9967d5f865c68f6fe2630c0f725b0363554e77@134.255.252.173:26656,785bc83577e3980545bac051de8f57a9fd82695f@194.233.164.146:26656,778fdedf6effe996f039f22901a3360bc838b52e@161.97.187.189:36657,8f67a2fcdd7ade970b1983bf1697111d35dfdd6f@52.79.199.137:26656,00c328a33578466c711874ec5ee7ada75951f99a@35.82.201.64:26656,cfb6f2d686014135d4a6034aa6645abd0020cac6@52.79.88.57:26656" ~/.osmosis/config/config.toml
+                                        sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.0uosmo"/g' ~/.osmosis/config/app.toml
+                                        sudo rm -i ~/.osmosis/config/genesis.json
+                                        wget https://github.com/osmosis-labs/osmosis/raw/main/networks/osmosis-1/genesis.json ~/.osmosis/config/
+                                        cat > /etc/systemd/system/osmosis.service
+                                        echo "[Unit]
+                                        Description=Osmosis Node
+                                        After=network.target
+
+                                        [Service]
+                                        Type=simple
+                                        User=$(whoami)
+                                        WorkingDirectory=~/
+                                        ExecStart=/usr/bin/osmosisd start
+                                        Restart=on-failure
+                                        StartLimitInterval=0
+                                        RestartSec=3
+                                        LimitNOFILE=65535
+                                        LimitMEMLOCK=209715200
+
+                                        [Install]
+                                        WantedBy=multi-user.target" > /etc/systemd/system/osmosis.service
+                                        #rm ~/.chihuahua/data/priv_validator_state.json
+                                        #wget http://135.181.60.250/akash/akashnet-2_$(date +"%Y-%m-%d").tar -P ~/.akash/data
+                                        #tar -xvf ~/.akash/data/akashnet-2_$(date +"%Y-%m-%d").tar
+                                        sudo systemctl daemon-reload
+                                        sudo systemctl enable osmosis
+                                        sudo systemctl start osmosis && journalctl -u osmosis -f; break;;
         "e-Money")
             echo "you chose choice $REPLY which is $opt"
             ;;
@@ -211,8 +247,44 @@ do
             echo "you chose choice $REPLY which is $opt"
             ;;
         "Osmosis")
-            echo "you chose choice $REPLY which is $opt"
-            ;;
+                                        git clone https://github.com/osmosis-labs/osmosis
+                                        cd osmosis
+                                        git checkout v6.1.0
+                                        make install
+                                        cp ~/go/bin/osmosisd /usr/bin/osmosisd
+					echo "What would you like your node name to be?"
+					read NAME
+					echo "Your node $NAME is now set"
+                                        osmosisd init $NAME
+                                        sed -i 's/seeds = ""/seeds ="aef35f45db2d9f5590baa088c27883ac3d5e0b33@3.108.102.92:26656" ~/.osmosis/config/config.toml
+                                        sed -i 's/persistent_peers = ""/persistent_peers = "f74518ad134630da8d2405570f6a3639954c985f@65.0.173.217:26656,d478882a80674fa10a32da63cc20cae13e3a2a57@43.204.0.243:26656,61d743ea796ad1e1ff838c9e84adb38dfffd1d9d@15.235.9.222:26656,b8468f64788a17dbf34a891d9cd29d54b2b6485d@194.163.178.25:26656,d8b74791ee56f1b345d822f62bd9bc969668d8df@194.163.128.55:36656,81444353d70bab79742b8da447a9564583ed3d6a@164.68.105.248:26656,5b1ceb8110da4e90c38c794d574eb9418a7574d6@43.254.41.56:26656,98b4522a541a69007d87141184f146a8f04be5b9@40.112.90.170:26656,9a59b6dc59903d036dd476de26e8d2b9f1acf466@195.201.195.111:26656" ~/.osmosis/config/config.toml
+                                        sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.01ucmdx"/g' ~/.osmosis/config/app.toml
+                                        sudo rm -i ~/.osmosis/config/genesis.json
+                                        wget https://github.com/comdex-official/networks/raw/main/mainnet/comdex-1/genesis.json ~/.osmosis/config/
+                                        cat > /etc/systemd/system/osmosis.service
+                                        echo "[Unit]
+                                        Description=Osmosis Node
+                                        After=network.target
+
+                                        [Service]
+                                        Type=simple
+                                        User=$(whoami)
+                                        WorkingDirectory=~/
+                                        ExecStart=/usr/bin/osmosisd start
+                                        Restart=on-failure
+                                        StartLimitInterval=0
+                                        RestartSec=3
+                                        LimitNOFILE=65535
+                                        LimitMEMLOCK=209715200
+
+                                        [Install]
+                                        WantedBy=multi-user.target" > /etc/systemd/system/osmosis.service
+                                        #rm ~/.chihuahua/data/priv_validator_state.json
+                                        #wget http://135.181.60.250/akash/akashnet-2_$(date +"%Y-%m-%d").tar -P ~/.akash/data
+                                        #tar -xvf ~/.akash/data/akashnet-2_$(date +"%Y-%m-%d").tar
+                                        sudo systemctl daemon-reload
+                                        sudo systemctl enable osmosis
+                                        sudo systemctl start osmosis && journalctl -u osmosis -f; break;;
         "Sentinel")
             echo "you chose choice $REPLY which is $opt"
             ;;
