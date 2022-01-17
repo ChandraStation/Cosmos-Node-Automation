@@ -51,9 +51,9 @@ select opt in "${options[@]}"
 do
     case $opt in
         "Akash")
-            echo "What would you like your node name to be?"
+            tput setaf 4; echo 'What would you like your node name to be?'; tput sgr0
 	        read NAME
-	        echo "Your node $NAME is now set"
+	        tput setaf 4; echo 'Your node $NAME is now set'; tput sgr0
             wget https://github.com/ovrclk/akash/releases/download/v0.14.1/akash_0.14.1_linux_amd64.zip
             unzip akash_0.14.1_linux_amd64.zip
             sudo rm akash_0.14.1_linux_amd64.zip
@@ -65,12 +65,12 @@ do
             sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.01uakt"/g' ~/.akash/config/app.toml
             sudo rm -i ~/.akash/config/genesis.json
             wget https://github.com/ovrclk/net/raw/master/mainnet/genesis.json -P ~/.akash/config/
-            echo "Username"
+            tput setaf 4; echo 'Username'; tput sgr0
 	        read USERNAME
-	        echo "Your username $USERNAME is now set"
-            echo "Home Directory"
+	        tput setaf 4; echo 'Your username $USERNAME is now set'; tput sgr0
+            tput setaf 4; echo 'Home Directory'; tput sgr0
 	        read WORKINGDIRECTORY
-	        echo "Your Home Directory $WORKINGDIRECTORY is now set"
+	        tput setaf 4; echo 'Your Home Directory $WORKINGDIRECTORY is now set'; tput sgr0
             echo
             "[Unit]
             Description=Akash Node
@@ -91,7 +91,7 @@ do
             WantedBy=multi-user.target" >> /etc/systemd/system/akash.service
             rm ~/.akash/data/priv_validator_state.json
             wget http://135.181.60.250/akash/akashnet-2_$(date +"%Y-%m-%d").tar -P ~/.akash/data
-            tar -xvf ~/.akash/data/akashnet-2_$(date +"%Y-%m-%d").tar ~/.akash/data/
+            tar -xvf ~/.akash/data/akashnet-2_$(date +"%Y-%m-%d").tar 
             sudo systemctl daemon-reload
             sudo systemctl enable akash
             sudo systemctl start akash; break;;
