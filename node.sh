@@ -216,7 +216,42 @@ do
 			echo "What would you like your node name to be?"
 			read NAME
 			echo "Your node $NAME is now set"
-            ;;
+            git clone https://github.com/e-money/em-ledger
+            cd em-ledger
+            git checkout v1.1.4
+            make install
+            cd
+            cp ~/go/bin/emd /usr/bin/emd
+            emd init $NAME
+            sed -i 's/seeds = ""/seeds ="708e559271d4d75d7ea2c3842e87d2e71a465684@seed-1.emoney.validator.network:28656,336cdb655ea16413a8337e730683ddc0a24af9de@seed-2.emoney.validator.network:28656" ~/.emd/config/config.toml
+            sed -i 's/persistent_peers = ""/persistent_peers = "ecec8933d80da5fccda6bdd72befe7e064279fc1@207.180.213.123:26676,0ad7bc7687112e212bac404670aa24cd6116d097@50.18.83.75:26656,1723e34f45f54584f44d193ce9fd9c65271ca0b3@13.124.62.83:26656,34eca4a9142bf9c087a987b572c114dad67a8cc5@172.105.148.191:26656,c2766f7f6dfe95f2eb33e99a538acf3d6ec608b1@162.55.132.230:2140,eed66085c975189e3d498fe61af2fcfb3da34924@217.79.184.40:26656" ~/.emd/config/config.toml
+            sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.025ungm"/g' ~/.emd/config/app.toml
+            sudo rm -i ~/.dig/config/genesis.json
+            wget https://raw.githubusercontent.com/notional-labs/dig/master/networks/mainnets/dig-1/genesis.json ~/.emd/config/
+            cat > /etc/systemd/system/emoney.service
+            echo "[Unit]
+            Description=emoney Node
+            After=network.target
+
+            [Service]
+            Type=simple
+            User=$(whoami)
+            WorkingDirectory=~/
+            ExecStart=/usr/bin/emd start
+            Restart=on-failure
+            StartLimitInterval=0
+            RestartSec=3
+            LimitNOFILE=65535
+            LimitMEMLOCK=209715200
+
+            [Install]
+            WantedBy=multi-user.target" > /etc/systemd/system/emoney.service
+            #rm ~/.chihuahua/data/priv_validator_state.json
+            #wget http://135.181.60.250/akash/akashnet-2_$(date +"%Y-%m-%d").tar -P ~/.akash/data
+            #tar -xvf ~/.akash/data/akashnet-2_$(date +"%Y-%m-%d").tar
+            sudo systemctl daemon-reload
+            sudo systemctl enable emoney
+            sudo systemctl start emoney; break;;
         "G-Bridge")
 			echo "What would you like your node name to be?"
 			read NAME
