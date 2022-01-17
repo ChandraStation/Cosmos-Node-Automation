@@ -16,21 +16,21 @@ Use these bash scripts to automate the installation and initilization of various
 * Osmosis
 * e-Money
 * Comdex
-* G-Bridge
 * Chihuahua
 * Dig
 
 (Feel free to upkeep the repo with up to date links to genesis & software versions)
 
 ## To do
-#### CHalabi
+#### Chalabi
 
 - [x] Add OS Select
-- [ ] Iterate remainder  of networks
+- [x] Iterate remainder  of networks
 - [x] ASCII
 - [x] Remove Yes/No
 - [ ] Add MacOS
 - [ ] Make Windows GAG
+- [ ] Start snapshotting all supported networks
 
 #### Bailey
 
@@ -41,6 +41,3 @@ Use these bash scripts to automate the installation and initilization of various
 - [ ] Add Progress Bar
 - [ ] Create loop
 
-## License
-
-MIT Baby

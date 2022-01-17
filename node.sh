@@ -46,7 +46,7 @@ done
 # Network Select
 
 PS3='Select a network: '
-options=("Akash" "Chihuahua" "Comdex" "Dig" "e-Money" "G-Bridge" "Omniflix" "Osmosis" "Sentinel" "Logs" "Quit")
+options=("Akash" "Chihuahua" "Comdex" "Dig" "e-Money" "Omniflix" "Osmosis" "Sentinel" "Logs" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -252,17 +252,48 @@ do
             sudo systemctl daemon-reload
             sudo systemctl enable emoney
             sudo systemctl start emoney; break;;
-            
-        "G-Bridge")
-			echo "What would you like your node name to be?"
-			read NAME
-			echo "Your node $NAME is now set"
-            ;;
+
         "Omniflix")
 			echo "What would you like your node name to be?"
 			read NAME
 			echo "Your node $NAME is now set"
-            ;;
+            git clone https://github.com/OmniFlix/omniflixhub
+            cd omniflixhub
+            git checkout v0.3.0
+            make install
+            cd
+            cp ~/go/bin/omniflixhubd /usr/bin/omniflixhubd
+            emd init $NAME
+            sed -i 's/seeds = ""/seeds ="75a6d3a3b387947e272dab5b4647556e8a3f9fc1@45.72.100.122:26656" ~/.omniflixhub/config/config.toml
+            sed -i 's/persistent_peers = ""/persistent_peers = "f05968e78c84fd3997583fabeb3733a4861f53bf@45.72.100.120:26656,b29fad915c9bcaf866b0a8ad88493224118e8b78@104.154.172.193:26656,28ea934fbe330df2ca8f0ddd7a57a8a68c39a1a2@45.72.100.110:26656,94326ddc5661a1b571ea10c0626f6411f4926230@45.72.100.111:26656" ~/.omniflixhub/config/config.toml
+            sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.025ungm"/g' ~/.omniflixhub/config/app.toml
+            sudo rm -i ~/.dig/config/genesis.json
+            wget https://raw.githubusercontent.com/OmniFlix/testnets/main/flixnet-3/genesis.json ~/.omniflixhub/config/
+            cat > /etc/systemd/system/omniflix.service
+            echo "[Unit]
+            Description=OmniFlix Node
+            After=network.target
+
+            [Service]
+            Type=simple
+            User=$(whoami)
+            WorkingDirectory=~/
+            ExecStart=/usr/bin/omniflixhubd start
+            Restart=on-failure
+            StartLimitInterval=0
+            RestartSec=3
+            LimitNOFILE=65535
+            LimitMEMLOCK=209715200
+
+            [Install]
+            WantedBy=multi-user.target" > /etc/systemd/system/omniflixhub.service
+            #rm ~/.chihuahua/data/priv_validator_state.json
+            #wget http://135.181.60.250/akash/akashnet-2_$(date +"%Y-%m-%d").tar -P ~/.akash/data
+            #tar -xvf ~/.akash/data/akashnet-2_$(date +"%Y-%m-%d").tar
+            sudo systemctl daemon-reload
+            sudo systemctl enable omniflix
+            sudo systemctl start omniflix; break;;
+
         "Osmosis")
 			echo "What would you like your node name to be?"
 			read NAME
@@ -337,9 +368,9 @@ do
 
             [Install]
             WantedBy=multi-user.target" > /etc/systemd/system/sentinel.service
-            #rm ~/.chihuahua/data/priv_validator_state.json
-            #wget http://135.181.60.250/akash/akashnet-2_$(date +"%Y-%m-%d").tar -P ~/.akash/data
-            #tar -xvf ~/.akash/data/akashnet-2_$(date +"%Y-%m-%d").tar
+            rm ~/.sentinelhub/data/priv_validator_state.json
+            wget http://135.181.60.250:8083/sentinel/sentinelhub-2_$(date +"%Y-%m-%d").tar -P ~/.sentinelhub/data
+            tar -xvf ~/.sentinelhub/data/sentinelhub-2_$(date +"%Y-%m-%d").tar
             sudo systemctl daemon-reload
             sudo systemctl enable sentinel
             sudo systemctl start sentinel; break;;
