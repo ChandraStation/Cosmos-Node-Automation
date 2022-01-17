@@ -65,12 +65,13 @@ do
             sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.01uakt"/g' ~/.akash/config/app.toml
             sudo rm -i ~/.akash/config/genesis.json
             wget https://github.com/ovrclk/net/raw/master/mainnet/genesis.json -P ~/.akash/config/
-            tput setaf 4; echo 'Username'; tput sgr0
+            tput setaf 4; echo 'Input Your System Username'; tput sgr0
 	        read USERNAME
 	        tput setaf 4; echo 'Your username $USERNAME is now set'; tput sgr0
-            tput setaf 4; echo 'Home Directory'; tput sgr0
+            tput setaf 4; echo 'Input Your Home Directory Path'; tput sgr0
 	        read WORKINGDIRECTORY
 	        tput setaf 4; echo 'Your Home Directory $WORKINGDIRECTORY is now set'; tput sgr0
+            cat >> /etc/systemd/system/akash.service
             echo
             "[Unit]
             Description=Akash Node
@@ -91,7 +92,7 @@ do
             WantedBy=multi-user.target" >> /etc/systemd/system/akash.service
             rm ~/.akash/data/priv_validator_state.json
             wget http://135.181.60.250/akash/akashnet-2_$(date +"%Y-%m-%d").tar -P ~/.akash/data
-            tar -xvf ~/.akash/data/akashnet-2_$(date +"%Y-%m-%d").tar 
+            tar -xvf ~/.akash/data/akashnet-2_$(date +"%Y-%m-%d").tar -C ~/.akash/data/
             sudo systemctl daemon-reload
             sudo systemctl enable akash
             sudo systemctl start akash; break;;
