@@ -174,27 +174,29 @@ do
 			echo "What would you like your node name to be?"
 			read NAME
 			echo "Your node $NAME is now set"
-            git clone https://github.com/osmosis-labs/osmosis
-            cd osmosis
-            git checkout v6.1.0
-            make install
-            cp ~/go/bin/osmosisd /usr/bin/osmosisd
-            osmosisd init $NAME
-            sed -i 's/seeds = ""/seeds ="6bcdbcfd5d2c6ba58460f10dbcfde58278212833@osmosis.artifact-staking.io:26656" ~/.osmosis/config/config.toml
-            sed -i 's/persistent_peers = ""/persistent_peers = "8d9967d5f865c68f6fe2630c0f725b0363554e77@134.255.252.173:26656,785bc83577e3980545bac051de8f57a9fd82695f@194.233.164.146:26656,778fdedf6effe996f039f22901a3360bc838b52e@161.97.187.189:36657,8f67a2fcdd7ade970b1983bf1697111d35dfdd6f@52.79.199.137:26656,00c328a33578466c711874ec5ee7ada75951f99a@35.82.201.64:26656,cfb6f2d686014135d4a6034aa6645abd0020cac6@52.79.88.57:26656" ~/.osmosis/config/config.toml
-            sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.0uosmo"/g' ~/.osmosis/config/app.toml
-            sudo rm -i ~/.osmosis/config/genesis.json
-            wget https://github.com/osmosis-labs/osmosis/raw/main/networks/osmosis-1/genesis.json ~/.osmosis/config/
-            cat > /etc/systemd/system/osmosis.service
+            git clone https://github.com/notional-labs/dig
+            cd dig
+            git checkout v1.1.0
+            cd cmd/digd
+            go install ./...
+            cd
+            cp ~/go/bin/digd /usr/bin/digd
+            digd init $NAME
+            sed -i 's/seeds = ""/seeds ="37b2839da4463b22a51b1fe20d97992164270eba@62.171.157.192:26656,e2c96b96d4c3a461fb246edac3b3cdbf47768838@65.21.202.37:6969" ~/.dig/config/config.toml
+            sed -i 's/persistent_peers = ""/persistent_peers = "33f4788e1c6a378b929c66f31e8d253b9fd47c47@194.163.154.251:26656,64eccffdc60a206227032d3a021fbf9dfc686a17@194.163.156.84:26656,be7598b2d56fb42a27821259ad14aff24c40f3d2@172.16.152.118:26656,f446e37e47297ce9f8951957d17a2ae9a16db0b8@137.184.67.162:26656,ab2fa2789f481e2856a5d83a2c3028c5b215421d@144.91.117.49:26656,e9e89250b40b4512237c77bd04dc76c06a3f8560@185.214.135.205:26656,1539976f4ee196f172369e6f348d60a6e3ec9e93@159.69.147.189:26656,85316823bee88f7b05d0cfc671bee861c0237154@95.217.198.243:26656,eb55b70c9fd8fc0d5530d0662336377668aab3f9@185.194.219.128:26656" ~/.dig/config/config.toml
+            sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.025udig"/g' ~/.dig/config/app.toml
+            sudo rm -i ~/.dig/config/genesis.json
+            wget https://raw.githubusercontent.com/notional-labs/dig/master/networks/mainnets/dig-1/genesis.json ~/.dig/config/
+            cat > /etc/systemd/system/dig.service
             echo "[Unit]
-            Description=Osmosis Node
+            Description=Dig Node
             After=network.target
 
             [Service]
             Type=simple
             User=$(whoami)
             WorkingDirectory=~/
-            ExecStart=/usr/bin/osmosisd start
+            ExecStart=/usr/bin/digd start
             Restart=on-failure
             StartLimitInterval=0
             RestartSec=3
@@ -202,13 +204,13 @@ do
             LimitMEMLOCK=209715200
 
             [Install]
-            WantedBy=multi-user.target" > /etc/systemd/system/osmosis.service
+            WantedBy=multi-user.target" > /etc/systemd/system/dig.service
             #rm ~/.chihuahua/data/priv_validator_state.json
             #wget http://135.181.60.250/akash/akashnet-2_$(date +"%Y-%m-%d").tar -P ~/.akash/data
             #tar -xvf ~/.akash/data/akashnet-2_$(date +"%Y-%m-%d").tar
             sudo systemctl daemon-reload
-            sudo systemctl enable osmosis
-            sudo systemctl start osmosis; break;;
+            sudo systemctl enable dig
+            sudo systemctl start dig; break;;
 
         "e-Money")
 			echo "What would you like your node name to be?"
@@ -269,47 +271,42 @@ do
 			echo "What would you like your node name to be?"
 			read NAME
 			echo "Your node $NAME is now set"
-            ;;
+            git clone https://github.com/sentinel-official/hub
+            cd hub
+            git checkout v0.8.3
+            make install
+            cp ~/go/bin/sentinelhub /usr/bin/sentinelhub
+            osmosisd init $NAME
+            sed -i 's/seeds = ""/seeds ="c7859082468bcb21c914e9cedac4b9a7850347de@167.71.28.11:26656" ~/.sentinelhub/config/config.toml
+            sed -i 's/persistent_peers = ""/persistent_peers = "f74518ad134630da8d2405570f6a3639954c985f@65.0.173.217:26656,d478882a80674fa10a32da63cc20cae13e3a2a57@43.204.0.243:26656,61d743ea796ad1e1ff838c9e84adb38dfffd1d9d@15.235.9.222:26656,b8468f64788a17dbf34a891d9cd29d54b2b6485d@194.163.178.25:26656,d8b74791ee56f1b345d822f62bd9bc969668d8df@194.163.128.55:36656,81444353d70bab79742b8da447a9564583ed3d6a@164.68.105.248:26656,5b1ceb8110da4e90c38c794d574eb9418a7574d6@43.254.41.56:26656,98b4522a541a69007d87141184f146a8f04be5b9@40.112.90.170:26656,9a59b6dc59903d036dd476de26e8d2b9f1acf466@195.201.195.111:26656" ~/.sentinelhub/config/config.toml
+            sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.01udvpn"/g' ~/.sentinelhub/config/app.toml
+            sudo rm -i ~/.sentinelhub/config/genesis.json
+            wget https://github.com/sentinel-official/networks/raw/main/sentinelhub-1/genesis.zip ~/.sentinelhub/config/
+            unzip ~/.sentinelhub/config/genesis.zip
+            cat > /etc/systemd/system/sentinel.service
+            echo "[Unit]
+            Description=Sentinel Node
+            After=network.target
 
-        "Logs")
-            PS3='Select a network: '
-            options=("Akash" "Chihuahua" "Comdex" "Dig" "e-Money" "G-Bridge" "Omniflix" "Osmosis" "Sentinel" "Quit")
-            select opt in "${options[@]}"
-                do
-                    case $opt in
-                                "Akash")
-                                        sudo journalctl -u akash -f; break;;
-            
-                                "Chihuahua")
-			                sudo journalctl -u chihuahua -f; break;;
+            [Service]
+            Type=simple
+            User=$(whoami)
+            WorkingDirectory=~/
+            ExecStart=/usr/bin/sentinelhub start
+            Restart=on-failure
+            StartLimitInterval=0
+            RestartSec=3
+            LimitNOFILE=65535
+            LimitMEMLOCK=209715200
 
-                                "Comdex")
-                                        sudo journalctl -u comdex -f; break;;
-            
-                                "Dig")
-                                        sudo journalctl -u dig -f; break;;
-
-                                "e-Money")
-                                        sudo journalctl -u e-Money -f; break;;
-
-                                "G-Bridge")
-                                        sudo journalctl -u G-Bridge -f; break;;
-
-                                "Omniflix")
-                                        sudo journalctl -u omniflix -f; break;;
-
-                                "Osmosis")
-                                        sudo journalctl -u osmosis -f; break;;
-
-                                "Sentinel")
-                                        sudo journalctl -u sentinel -f; break;;
-
-                                "Quit");;
-                                        echo "Please select a network from the previous section:"
-                                        break;;
-                esac
-            done    
-            ;;
+            [Install]
+            WantedBy=multi-user.target" > /etc/systemd/system/sentinel.service
+            #rm ~/.chihuahua/data/priv_validator_state.json
+            #wget http://135.181.60.250/akash/akashnet-2_$(date +"%Y-%m-%d").tar -P ~/.akash/data
+            #tar -xvf ~/.akash/data/akashnet-2_$(date +"%Y-%m-%d").tar
+            sudo systemctl daemon-reload
+            sudo systemctl enable sentinel
+            sudo systemctl start sentinel; break;;
 
         "Quit")
             exit
