@@ -60,20 +60,26 @@ do
             mv akash_0.14.1_linux_amd64/akash /usr/bin/
             sudo rm -i -rf akash_0.14.1_linux_amd64/
             akash init $NAME --chain-id akashnet-2
-            sed -i 's/seeds = ""/seeds ="27eb432ccd5e895c5c659659120d68b393dd8c60@35.247.65.183:26656,8e2f56098f182ffe2f6fb09280ba"/g' ~/.akash/config/config.toml
-            sed -i 's/persistent_peers = ""/persistent_peers = "27eb432ccd5e895c5c659659120d68b393dd8c60@35.247.65.183:26656"/g' ~/.akash/config/config.toml
+            sed -i 's/seeds = ""/seeds ="27eb432ccd5e895c5c659659120d68b393dd8c60@35.247.65.183:26656"/g' ~/.akash/config/config.toml
+            sed -i 's/persistent_peers = ""/persistent_peers = "27eb432ccd5e895c5c659659120d68b393dd8c60@35.247.65.183:26656,9180b99a5be3443677e0f57fc5f40e8f071bdcd8@161.35.239.0:51656,47c9acc0e7d9b244a6404458e76d50b6284bfbbb@142.93.77.25:26656,ab7b55588ea3f4f7a477e852aa262959e54117cd@3.235.249.94:26656,4acf579e2744268f834c713e894850995bbf0ffa@50.18.31.225:26656,3691ac1f56389ffec8579c13a6eb8eca41cf8ae3@54.219.88.246:26656,86afe23f116ba4754a19819a55d153008eb74b48@15.164.87.75:26656,6fbc3808f7d6c961e84944ae2d8c800a8bbffbb4@138.201.159.100:26656,a2a3ffe7ac122a218e1f59c32a670f04b8fd3033@165.22.69.102:26656"/g' ~/.akash/config/config.toml
             sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.01uakt"/g' ~/.akash/config/app.toml
             sudo rm -i ~/.akash/config/genesis.json
             wget https://github.com/ovrclk/net/raw/master/mainnet/genesis.json -P ~/.akash/config/
-            cat > /etc/systemd/system/akash.service
-            echo "[Unit]
+            echo "Username"
+	        read USERNAME
+	        echo "Your username $USERNAME is now set"
+            echo "Home Directory"
+	        read WORKINGDIRECTORY
+	        echo "Your Home Directory $WORKINGDIRECTORY is now set"
+            echo
+            "[Unit]
             Description=Akash Node
             After=network.target
 
             [Service]
             Type=simple
-            User=$(whoami)
-            WorkingDirectory=~/
+            User=$USERNAME
+            WorkingDirectory=$WORKINGDIRECTORY
             ExecStart=/usr/bin/akash start
             Restart=on-failure
             StartLimitInterval=0
@@ -82,12 +88,12 @@ do
             LimitMEMLOCK=209715200
 
             [Install]
-            WantedBy=multi-user.target" > /etc/systemd/system/akash.service
+            WantedBy=multi-user.target" >> /etc/systemd/system/akash.service
             rm ~/.akash/data/priv_validator_state.json
             wget http://135.181.60.250/akash/akashnet-2_$(date +"%Y-%m-%d").tar -P ~/.akash/data
-            tar -xvf ~/.akash/data/akashnet-2_$(date +"%Y-%m-%d").tar
-            sudo systemctl enable akash
+            tar -xvf ~/.akash/data/akashnet-2_$(date +"%Y-%m-%d").tar ~/.akash/data/
             sudo systemctl daemon-reload
+            sudo systemctl enable akash
             sudo systemctl start akash; break;;
 
         "Chihuahua")
@@ -106,7 +112,7 @@ do
             sudo rm -i ~/.chihuahua/config/genesis.json
             wget https://github.com/ChihuahuaChain/mainnet/blob/main/genesis.json -P ~/.chihuahua/config/
             echo
-            '[Unit]
+            "[Unit]
             Description=Chihuahua Node
             After=network.target
 
@@ -122,7 +128,7 @@ do
             LimitMEMLOCK=209715200
 
             [Install]
-            WantedBy=multi-user.target' >> /etc/systemd/system/chihuahua.service
+            WantedBy=multi-user.target" >> /etc/systemd/system/chihuahua.service
             #rm ~/.chihuahua/data/priv_validator_state.json
             #wget http://135.181.60.250/akash/akashnet-2_$(date +"%Y-%m-%d").tar -P ~/.akash/data
             #tar -xvf ~/.akash/data/akashnet-2_$(date +"%Y-%m-%d").tar
