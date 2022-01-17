@@ -26,7 +26,7 @@ select opt in "${options[@]}"
 do
     case $opt in
         "Arch Linux")
-            pacman -Syyu aria2 atop autoconf automake base binutils bison bmon btrfs-progs btop clang cronie cryptsetup docker dstat fakeroot flex gcc git go gptfdisk groff grub haveged htop iftop iptraf-ng jq llvm lvm2 m4 make mdadm neovim net-tools nethogs openssh patch pkgconf python rsync rustup screen sudo texinfo unzip vi vim vnstat wget which xfsprogs hddtemp python-setuptools npm python-bottle python-docker python-matplotlib python-netifaces python-zeroconf python-pystache time nload nmon glances gtop bwm-ng bpytop duf go-ipfs fish pigz zerotier-one sysstat github-cli pm2; break;;
+            pacman -Syyu fish aria2 atop autoconf automake base binutils bison bmon btrfs-progs btop clang cronie cryptsetup docker dstat fakeroot flex gcc git go gptfdisk groff grub haveged htop iftop iptraf-ng jq llvm lvm2 m4 make mdadm neovim net-tools nethogs openssh patch pkgconf python rsync rustup screen sudo texinfo unzip vi vim vnstat wget which xfsprogs hddtemp python-setuptools npm python-bottle python-docker python-matplotlib python-netifaces python-zeroconf python-pystache time nload nmon glances gtop bwm-ng bpytop duf go-ipfs fish pigz zerotier-one sysstat github-cli pm2; break;;
 
 
         "Ubuntu")
@@ -105,8 +105,8 @@ do
             sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.01uhuahua"/g' ~/.chihuahua/config/app.toml
             sudo rm -i ~/.chihuahua/config/genesis.json
             wget https://github.com/ChihuahuaChain/mainnet/blob/main/genesis.json -P ~/.chihuahua/config/
-            cat > /etc/systemd/system/chihuahua.service
-            echo "[Unit]
+            echo
+            '[Unit]
             Description=Chihuahua Node
             After=network.target
 
@@ -122,7 +122,7 @@ do
             LimitMEMLOCK=209715200
 
             [Install]
-            WantedBy=multi-user.target" > /etc/systemd/system/chihuahua.service
+            WantedBy=multi-user.target' >> /etc/systemd/system/chihuahua.service
             #rm ~/.chihuahua/data/priv_validator_state.json
             #wget http://135.181.60.250/akash/akashnet-2_$(date +"%Y-%m-%d").tar -P ~/.akash/data
             #tar -xvf ~/.akash/data/akashnet-2_$(date +"%Y-%m-%d").tar
