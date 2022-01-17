@@ -252,6 +252,7 @@ do
             sudo systemctl daemon-reload
             sudo systemctl enable emoney
             sudo systemctl start emoney; break;;
+            
         "G-Bridge")
 			echo "What would you like your node name to be?"
 			read NAME
