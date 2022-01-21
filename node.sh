@@ -61,11 +61,11 @@ do
 	        read WORKINGDIRECTORY
 	        tput setaf 6; echo 'Your Home Directory $WORKINGDIRECTORY is now set'; tput sgr0
             source ./progressbar.sh ||
-            wget https://github.com/ovrclk/akash/releases/download/v0.14.1/akash_0.14.1_linux_amd64.zip ||
-            unzip akash_0.14.1_linux_amd64.zip ||
-            sudo rm akash_0.14.1_linux_amd64.zip ||
-            mv akash_0.14.1_linux_amd64/akash /usr/bin/ ||
-            sudo rm -i -rf akash_0.14.1_linux_amd64/ ||
+            git clone  ||
+            cd akash ||
+            git checkout v0.14.1 ||
+	    make install ||
+            mv ~/go/bin/akash /usr/bin/ ||
             akash init $NAME --chain-id akashnet-2 ||
             sed -i 's/seeds = ""/seeds ="27eb432ccd5e895c5c659659120d68b393dd8c60@35.247.65.183:26656"/g' ~/.akash/config/config.toml ||
             sed -i 's/persistent_peers = ""/persistent_peers = "27eb432ccd5e895c5c659659120d68b393dd8c60@35.247.65.183:26656,9180b99a5be3443677e0f57fc5f40e8f071bdcd8@161.35.239.0:51656,47c9acc0e7d9b244a6404458e76d50b6284bfbbb@142.93.77.25:26656,ab7b55588ea3f4f7a477e852aa262959e54117cd@3.235.249.94:26656,4acf579e2744268f834c713e894850995bbf0ffa@50.18.31.225:26656,3691ac1f56389ffec8579c13a6eb8eca41cf8ae3@54.219.88.246:26656,86afe23f116ba4754a19819a55d153008eb74b48@15.164.87.75:26656,6fbc3808f7d6c961e84944ae2d8c800a8bbffbb4@138.201.159.100:26656,a2a3ffe7ac122a218e1f59c32a670f04b8fd3033@165.22.69.102:26656"/g' ~/.akash/config/config.toml ||
@@ -111,7 +111,7 @@ do
             source ./progressbar.sh ||
             git clone https://github.com/ChihuahuaChain/chihuahua.git ||
             cd chihuahua ||
-            git checkout v1.0.0 ||
+            git checkout v1.1.0 ||
             make install ||
             cp ~/go/bin/chihuahuad /usr/bin/chihuahuad ||
             chihuahuad init $NAME --chain-id chihuahua-1 ||
@@ -438,4 +438,4 @@ do
     esac
 done
 
-echo "Delegate to Chandra Station"
+echo "If I could fall, into the sky.Y Do you know who, would pass me by? Id walk 1,000 miles if I could just, see, you. Tonight!"
