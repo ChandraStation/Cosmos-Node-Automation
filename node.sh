@@ -161,7 +161,7 @@ case `select_opt "Akash" "Chihuahua" "Comdex" "Dig" "e-Money" "G-Bridge" "OmniFl
             printf "\n"
 
 #Akash cont...
-            git clone https://github.com/ovrclk/akash -P /root/
+            git clone https://github.com/ovrclk/akash -P ~/root/
             cd akash 
             git checkout v0.14.1 
 	        make install 
@@ -236,7 +236,7 @@ EOF
             printf "\n"
 
 #Chihuahua cont...
-            git clone https://github.com/ChihuahuaChain/chihuahua.git -P /root/
+            git clone https://github.com/ChihuahuaChain/chihuahua.git ~/
             cd chihuahua
             git checkout main
             make install 
