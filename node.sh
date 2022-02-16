@@ -272,8 +272,6 @@ EOF
             wget https://tendermint-snapshots.polkachu.xyz/chihuahua/chihuahua_887041.tar.lz4 -P ~/.chihuahua/data 
             lz4 ~/.chihuahua/data/chihuahua_887041.tar.lz4 -C ~/.chihuahua/data/ 
             tar -xvf ~/.chihuahua/data/chihuahua_887041.tar -C ~/.chihuahua/data/
-            rm ~/.chihuahua/data/chihuahua_887041.tar
-            ~/.chihuahua/data/chihuahua_887041.tar.lz4
             systemctl daemon-reload 
             systemctl enable chihuahuad
             systemctl start chihuahuad
