@@ -269,9 +269,10 @@ LimitMEMLOCK=209715200
 [Install]
 WantedBy=multi-user.target
 EOF
-            wget https://tendermint-snapshots.polkachu.xyz/chihuahua/chihuahua_887041.tar.lz4 -P ~/.chihuahua/data 
-            lz4 ~/.chihuahua/data/chihuahua_887041.tar.lz4 -C ~/.chihuahua/data/ 
-            tar -xvf ~/.chihuahua/data/chihuahua_887041.tar -C ~/.chihuahua/data/
+            rm -rf .chihuahua/data/
+            wget https://tendermint-snapshots.polkachu.xyz/chihuahua/chihuahua_887041.tar.lz4 -P ~/.chihuahua/
+            lz4 ~/.chihuahua/data/chihuahua_887041.tar.lz4 
+            tar -xvf ~/.chihuahua/data/chihuahua_887041.tar
             systemctl daemon-reload 
             systemctl enable chihuahuad
             systemctl start chihuahuad
