@@ -270,8 +270,8 @@ LimitMEMLOCK=209715200
 WantedBy=multi-user.target
 EOF
             rm -rf $WORKINGDIRECTORY/.chihuahua/data/
-            wget https://snapshots.stake2.me/chihuahua/chihuahua_2022-02-21.tar -P $WORKINGDIRECTORY/.chihuahua/data
-            tar -xvf $WORKINGDIRECTORY/.chihuahua/data/chihuahua_2022-02-21.tar
+            wget https://snapshots.stake2.me/chihuahua/chihuahua_$(date +"%Y-%m-%d").tar -P $WORKINGDIRECTORY/.chihuahua/data
+            tar -xvf $WORKINGDIRECTORY/.chihuahua/data/chihuahua_$(date +"%Y-%m-%d").tar
             systemctl daemon-reload 
             systemctl enable chihuahuad
             systemctl start chihuahuad
@@ -424,9 +424,7 @@ LimitMEMLOCK=209715200
 [Install]
 WantedBy=multi-user.target
 EOF
-            rm -rf $WORKINGDIRECTORY/.chihuahua/data/
-            wget https://snapshots.stake2.me/chihuahua/chihuahua_2022-02-21.tar -P $WORKINGDIRECTORY/.chihuahua/data
-            tar -xvf $WORKINGDIRECTORY/.chihuahua/data/chihuahua_2022-02-21.tar
+
             sudo systemctl daemon-reload 
             sudo systemctl enable dig 
             sudo systemctl start dig 
@@ -548,17 +546,15 @@ EOF
             make install 
             cd 
             cp ~/go/bin/omniflixhubd /usr/bin/omniflixhubd 
-            emd init $NAME --home $WORKINGDIRECTORY/.omniflixhub/
-            sed -i 's/seeds = ""/seeds ="75a6d3a3b387947e272dab5b4647556e8a3f9fc1@45.72.100.122:26656"/g' $WORKINGDIRECTORY/.omniflixhub/config/config.toml 
-            sed -i 's/persistent_peers = ""/persistent_peers = "f05968e78c84fd3997583fabeb3733a4861f53bf@45.72.100.120:26656,b29fad915c9bcaf866b0a8ad88493224118e8b78@104.154.172.193:26656,28ea934fbe330df2ca8f0ddd7a57a8a68c39a1a2@45.72.100.110:26656,94326ddc5661a1b571ea10c0626f6411f4926230@45.72.100.111:26656"/g' $WORKINGDIRECTORY/.omniflixhub/config/config.toml 
-            sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.025ungm"/g' $WORKINGDIRECTORY/.omniflixhub/config/app.toml 
+            omniflixhubd init $NAME --home $WORKINGDIRECTORY/.omniflixhub/
+            sed -i 's/persistent_peers = ""/persistent_peers = "0a60b588671a5f1d1a524a66e86dbe40c81bd448@185.216.203.136:26656,55c6e002e769a752e1c80266e06afb5efbfc823c@38.242.206.186:26656,b10e09b559eb14d4dc07d43474ca0a1560391414@185.252.232.189:26656,a2077dce2d62cdcb8dc454f8eaef0e86846496ea@65.108.135.182:26656,c7f8c700f673cb586cebdcf85da3479724fa6988@65.108.128.241:26716"/g' $WORKINGDIRECTORY/.omniflixhub/config/config.toml 
         #Port number TBD all 9 others are in use
             #sed -i 's/laddr = "tcp://127.0.0.1:26657"/laddr = "tcp://127.0.0.1:16657"/g' $WORKINGDIRECTORY/.omniflixhub/config/config.toml 
             #sed -i 's/laddr = "tcp://0.0.0.0:26656"/laddr = "tcp://0.0.0.0:16656"/g' $WORKINGDIRECTORY/.omniflixhub/config/config.toml 
             #sed -i 's/address = "0.0.0.0:9090"/address = "0.0.0.0:1090"/g' $WORKINGDIRECTORY/.omniflixhub/config/app.toml 
             #sed -i 's/address = "0.0.0.0:9091"/address = "0.0.0.0:1091"/g' $WORKINGDIRECTORY/.omniflixhub/config/app.toml 
             sudo rm $WORKINGDIRECTORY/.omniflixhub/config/genesis.json 
-            wget https://raw.githubusercontent.com/OmniFlix/testnets/main/flixnet-3/genesis.json -P $WORKINGDIRECTORY/.omniflixhub/config/ 
+            wget https://raw.githubusercontent.com/OmniFlix/mainnet/main/omniflixhub-1/genesis.json -P $WORKINGDIRECTORY/.omniflixhub/config/ 
             cat << EOF > /etc/systemd/system/omniflixhub.service 
 [Unit] 
 Description=OmniFlix Node
@@ -578,9 +574,7 @@ LimitMEMLOCK=209715200
 [Install]
 WantedBy=multi-user.target
 EOF
-            rm -rf $WORKINGDIRECTORY/.omniflixhub/data/
-            wget https://snapshots.stake2.me/chihuahua/chihuahua_2022-02-21.tar -P $WORKINGDIRECTORY/.omniflixhub/data
-            tar -xvf $WORKINGDIRECTORY/.omniflixhub/data/chihuahua_2022-02-21.tar
+
             sudo systemctl daemon-reload 
             sudo systemctl enable omniflix 
             sudo systemctl start omniflix 
@@ -634,7 +628,7 @@ EOF
             sed -i 's/address = "0.0.0.0:9090"/address = "0.0.0.0:3090"/g' $WORKINGDIRECTORY/.osmosis/config/app.toml 
             sed -i 's/address = "0.0.0.0:9091"/address = "0.0.0.0:3091"/g' $WORKINGDIRECTORY/.osmosis/config/app.toml 
             sudo rm $WORKINGDIRECTORY/.osmosis/config/genesis.json
-            wget https://github.com/comdex-official/networks/raw/main/mainnet/comdex-1/genesis.json -P $WORKINGDIRECTORY/.osmosis/config/
+            wget https://github.com/osmosis-labs/osmosis/raw/main/networks/osmosis-1/genesis.json -P $WORKINGDIRECTORY/.osmosis/config/
             cat << EOF > /etc/systemd/system/osmosis.service 
 [Unit] 
 Description=Osmosis Node
@@ -733,8 +727,8 @@ LimitMEMLOCK=209715200
 WantedBy=multi-user.target
 EOF
             rm -rf $WORKINGDIRECTORY/.sentinelhub/data/
-            wget http://135.181.60.250:8083/sentinel/sentinelhub-2_2022-02-21.tar -P $WORKINGDIRECTORY/.sentinelhub/data
-            tar -xvf $WORKINGDIRECTORY/.sentinelhub/data/sentinelhub-2_2022-02-21.tar
+            wget http://135.181.60.250:8083/sentinel/sentinelhub-2_$(date +"%Y-%m-%d").tar -P $WORKINGDIRECTORY/.sentinelhub/data
+            tar -xvf $WORKINGDIRECTORY/.sentinelhub/data/sentinelhub-2_$(date +"%Y-%m-%d").tar
             sudo systemctl daemon-reload 
             sudo systemctl enable sentinel 
             sudo systemctl start sentinel 
