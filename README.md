@@ -8,8 +8,7 @@
 
 ## Node Standup
 
-Use these bash scripts to automate the installation and initilization of various Cosmos Nodes. Simply follow the script prompts and answer (y/n/s) Yes, No or Stop. 
-
+Use this bash script to automate the installation and initilization of various Cosmos Nodes. Simply follow the script prompts and select your answers
 ## Supported Networks
 * Akash
 * Sentinel
@@ -18,8 +17,9 @@ Use these bash scripts to automate the installation and initilization of various
 * Comdex
 * Chihuahua
 * Dig
+* OmniFlix
 
-(Feel free to upkeep the repo with up to date links to genesis & software versions)
+(Feel free to upkeep the repo with up to date links to genesis & software versions while we automate those processes)
 
 ## To do
 #### Chalabi
@@ -38,6 +38,6 @@ Use these bash scripts to automate the installation and initilization of various
 - [x] Add Multi Network Select
 - [x] Add node name selection
 - [x] Add go back
-- [ ] Add Progress Bar
+- [x] Add Progress Bar
 - [ ] Create loop
 
