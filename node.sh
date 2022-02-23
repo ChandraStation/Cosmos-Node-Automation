@@ -355,7 +355,7 @@ EOF
             printf '\nFinished!\n';;
 
 
-#DIG   STILL NEEDS SNAPSHOT         
+#DIG            
     3)      tput setaf 3; echo 'What would you like your node name to be?'; tput sgr0
 	        read NAME
 	        tput setaf 3; echo 'Your node $NAME is now set'; tput sgr0
@@ -399,8 +399,8 @@ EOF
             sed -i 's/seeds = ""/seeds ="37b2839da4463b22a51b1fe20d97992164270eba@62.171.157.192:26656,e2c96b96d4c3a461fb246edac3b3cdbf47768838@65.21.202.37:6969"/g' $WORKINGDIRECTORY/.dig/config/config.toml 
             sed -i 's/persistent_peers = ""/persistent_peers = "33f4788e1c6a378b929c66f31e8d253b9fd47c47@194.163.154.251:26656,64eccffdc60a206227032d3a021fbf9dfc686a17@194.163.156.84:26656,be7598b2d56fb42a27821259ad14aff24c40f3d2@172.16.152.118:26656,f446e37e47297ce9f8951957d17a2ae9a16db0b8@137.184.67.162:26656,ab2fa2789f481e2856a5d83a2c3028c5b215421d@144.91.117.49:26656,e9e89250b40b4512237c77bd04dc76c06a3f8560@185.214.135.205:26656,1539976f4ee196f172369e6f348d60a6e3ec9e93@159.69.147.189:26656,85316823bee88f7b05d0cfc671bee861c0237154@95.217.198.243:26656,eb55b70c9fd8fc0d5530d0662336377668aab3f9@185.194.219.128:26656"/g' $WORKINGDIRECTORY/.dig/config/config.toml
             sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.025udig"/g' $WORKINGDIRECTORY/.dig/config/app.toml 
-            sed -i 's/laddr = "tcp://127.0.0.1:26657"/laddr = "tcp://127.0.0.1:66657"/g' $WORKINGDIRECTORY/.dig/config/config.toml 
-            sed -i 's/laddr = "tcp://0.0.0.0:26656"/laddr = "tcp://0.0.0.0:66656"/g' $WORKINGDIRECTORY/.dig/config/config.toml 
+            sed -i 's#laddr = "tcp://127.0.0.1:26657"#laddr = "tcp://127.0.0.1:66657"#g' $WORKINGDIRECTORY/.dig/config/config.toml 
+            sed -i 's#laddr = "tcp://0.0.0.0:26656"#laddr = "tcp://0.0.0.0:66656"#g' $WORKINGDIRECTORY/.dig/config/config.toml 
             sed -i 's/address = "0.0.0.0:9090"/address = "0.0.0.0:6090"/g' $WORKINGDIRECTORY/.dig/config/app.toml 
             sed -i 's/address = "0.0.0.0:9091"/address = "0.0.0.0:6091"/g' $WORKINGDIRECTORY/.dig/config/app.toml 
             sudo rm $WORKINGDIRECTORY/.dig/config/genesis.json
@@ -414,7 +414,7 @@ After=network.target
 Type=simple
 User=$USERNAME
 WorkingDirectory=$WORKINGDIRECTORY
-ExecStart=/usr/bin/dig start
+ExecStart=/usr/bin/digd start
 Restart=on-failure
 StartLimitInterval=0
 RestartSec=3
@@ -478,7 +478,7 @@ EOF
             sed -i 's#laddr = "tcp://0.0.0.0:26656"#laddr = "tcp://0.0.0.0:46656"#g' $WORKINGDIRECTORY/.emd/config/config.toml 
             sed -i 's/address = "0.0.0.0:9090"/address = "0.0.0.0:4090"/g' $WORKINGDIRECTORY/.emd/config/app.toml 
             sed -i 's/address = "0.0.0.0:9091"/address = "0.0.0.0:4091"/g' $WORKINGDIRECTORY/.emd/config/app.toml 
-            sudo rm $WORKINGDIRECTORY/.dig/config/genesis.json 
+            sudo rm $WORKINGDIRECTORY/.emd/config/genesis.json 
             wget https://raw.githubusercontent.com/notional-labs/dig/master/networks/mainnets/dig-1/genesis.json -P $WORKINGDIRECTORY/.emd/config/ 
             cat << EOF > /etc/systemd/system/emd.service 
 [Unit] 
@@ -499,9 +499,9 @@ LimitMEMLOCK=209715200
 [Install]
 WantedBy=multi-user.target
 EOF
-            rm -rf $WORKINGDIRECTORY/.emd/data/
-            wget u250245-sub1@rsync.stakesystems.io:emoney/.emd/data/ -P $WORKINGDIRECTORY/.chihuahua/data
-            tar -xvf $WORKINGDIRECTORY/.emd/data/
+            #rm -rf $WORKINGDIRECTORY/.emd/data/
+            #wget u250245-sub1@rsync.stakesystems.io:emoney/.emd/data/ -P $WORKINGDIRECTORY/.emd/data
+            #tar -xvf $WORKINGDIRECTORY/.emd/data/
             sudo systemctl daemon-reload 
             sudo systemctl enable emoney 
             sudo systemctl start emoney 
