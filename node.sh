@@ -542,7 +542,7 @@ EOF
 #OmniFlix cont...
             git clone https://github.com/OmniFlix/omniflixhub 
             cd omniflixhub 
-            git checkout v0.3.0 
+            git checkout v0.4.0 
             make install 
             cd 
             cp ~/go/bin/omniflixhubd /usr/bin/omniflixhubd 
@@ -616,7 +616,7 @@ EOF
 #Osmosis cont...
             git clone https://github.com/osmosis-labs/osmosis 
             cd osmosis 
-            git checkout v6.1.0
+            git checkout v6.4.0
             make install
             cp ~/go/bin/osmosisd /usr/bin/osmosisd
             osmosisd init $NAME --home $WORKINGDIRECTORY/.osmosis/
