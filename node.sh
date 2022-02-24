@@ -347,7 +347,7 @@ LimitMEMLOCK=209715200
 WantedBy=multi-user.target
 EOF
             rm -rf $WORKINGDIRECTORY/.comdex/data/
-            wget https://cosmos-snap.staketab.com/comdex -P $WORKINGDIRECTORY/.comdex/data
+            wget https://snapshots.polkachu.com/snapshots/comdex/comdex_1337920.tar.lz4 -P $WORKINGDIRECTORY/.comdex/data
             tar -xvf $WORKINGDIRECTORY/.comdex/data/comdex
             sudo systemctl daemon-reload
             sudo systemctl enable comdex
