@@ -30,7 +30,7 @@ Use this bash script to automate the installation and initilization of various C
 - [x] Remove Yes/No
 - [ ] Add MacOS
 - [ ] Make Windows GAG
-- [ ] Start snapshotting all supported networks
+- [x] Start snapshotting all supported networks
 
 #### Bailey
 
