@@ -11,33 +11,36 @@
 Use this bash script to automate the installation and initilization of various Cosmos Nodes. Simply follow the script prompts and select your answers
 ## Supported Networks
 * Akash
-* Sentinel
-* Osmosis
-* e-Money
-* Comdex
+* Canto - Missing
 * Chihuahua
+* Comdex
 * Dig
+* e-Money
+* Evmos - Missing
+* Gravity - Missing
+* Kava - Missing
 * OmniFlix
+* Osmosis
+* Passage - Missing
+* Sentinel
+* Stride - Missing
+
 
 (Feel free to upkeep the repo with up to date links to genesis & software versions while we automate those processes)
 
-## To do
-#### Chalabi
+## To do List
 
 - [x] Add OS Select
-- [x] Iterate remainder  of networks
+- [x] Iterate remainder of networks
 - [x] ASCII
 - [x] Remove Yes/No
-- [ ] Add MacOS
-- [ ] Make Windows GAG
 - [x] Start snapshotting all supported networks
-
-#### Bailey
-
-- [x] Add Akash  
+- [ ] Add All networks mentioned above 
 - [x] Add Multi Network Select
 - [x] Add node name selection
 - [x] Add go back
-- [x] Add Progress Bar
-- [ ] Create loop
+- [ ] Add Progress Bar
+- [ ] Create loop - Maybe
+- [ ] Add MacOS
+
 
