@@ -41,6 +41,5 @@ Use this bash script to automate the installation and initilization of various C
 - [x] Add go back
 - [ ] Add Progress Bar
 - [ ] Create loop - Maybe
-- [ ] Add MacOS
 
 
