@@ -140,7 +140,7 @@ case `select_opt "Akash" "Chihuahua" "Comdex" "Dig" "e-Money" "OmniFlix" "Osmosi
             tput setaf 1; echo 'Input Your Home Directory Path'; tput sgr0
 	        read WORKINGDIRECTORY
 	        tput setaf 1; echo 'Your Home Directory $WORKINGDIRECTORY is now set'; tput sgr0
-            response=$(curl -s https://canto.api.chandrastation.com/node_info)
+            response_akash=$(curl -s https://akash.api.chandrastation.com/node_info)
             export AKASH_VERSION=$(echo $response_akash | jq -r '.application_version.version')
             git clone https://github.com/ovrclk/akash
             cd akash 
@@ -176,9 +176,9 @@ LimitMEMLOCK=209715200
 [Install]
 WantedBy=multi-user.target
 EOF
-            rm $WORKINGDIRECTORY/.akash/data/priv_validator_state.json 
-            wget http://135.181.60.250/akash/akashnet-2_$(date +"%Y-%m-%d").tar -P $WORKINGDIRECTORY/.akash/data 
-            tar -xvf $WORKINGDIRECTORY/.akash/data/akashnet-2_$(date +"%Y-%m-%d").tar -C $WORKINGDIRECTORY/.akash/data/ 
+            # rm $WORKINGDIRECTORY/.akash/data/priv_validator_state.json 
+            # wget http://135.181.60.250/akash/akashnet-2_$(date +"%Y-%m-%d").tar -P $WORKINGDIRECTORY/.akash/data 
+            # tar -xvf $WORKINGDIRECTORY/.akash/data/akashnet-2_$(date +"%Y-%m-%d").tar -C $WORKINGDIRECTORY/.akash/data/ 
             sudo systemctl daemon-reload 
             sudo systemctl enable akash
             sudo systemctl start akash;;
@@ -194,9 +194,11 @@ EOF
             tput setaf 3; echo 'Input Your Home Directory Path'; tput sgr0
 	        read WORKINGDIRECTORY
 	        tput setaf 3; echo 'Your Home Directory $WORKINGDIRECTORY is now set'; tput sgr0
+            response_chihuahua=$(curl -s https://chihuahua.api.chandrastation.com/node_info)
+            export CHIHUAHUA_VERSION=$(echo $response_chihuahua | jq -r '.application_version.version')
             git clone https://github.com/ChihuahuaChain/chihuahua.git
             cd chihuahua
-            git checkout v1.1.1
+            git checkout $CHIHUAHUA_VERSION
             make install
             mv ~/go/bin/chihuahuad /usr/bin/
             chihuahuad init $NAME --chain-id chihuahua-1 --home $WORKINGDIRECTORY/.chihuahua/
@@ -246,9 +248,11 @@ EOF
             tput setaf 1; echo 'Input Your Home Directory Path'; tput sgr0
 	        read WORKINGDIRECTORY
 	        tput setaf 1; echo 'Your Home Directory $WORKINGDIRECTORY is now set'; tput sgr0
+            response_comdex=$(curl -s https://comdex.api.chandrastation.com/node_info)
+            export COMDEX_VERSION=$(echo $response_comdex | jq -r '.application_version.version')
             git clone https://github.com/comdex-official/comdex 
             cd comdex 
-            git checkout v0.0.4
+            git checkout $COMDEX_VERSION
             make install 
             cp ~/go/bin/comdex /usr/bin/comdex 
             comdex init $NAME --home $WORKINGDIRECTORY/.comdex/
@@ -290,7 +294,7 @@ EOF
 
 
 #DIG            
-    3)      tput setaf 3; echo 'What would you like your node name to be?'; tput sgr0
+    3)      tput setaf 3; echo 'What would you like your node name to be?'; tput sgr0/okanisis/Canto/tree/ethermint-v2-backport
 	        read NAME
 	        tput setaf 3; echo 'Your node $NAME is now set'; tput sgr0
             tput setaf 3; echo 'Input Your System Username'; tput sgr0
