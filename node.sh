@@ -138,8 +138,6 @@ case `select_opt "Akash" "Chihuahua" "Comdex" "Dig" "e-Money" "OmniFlix" "Osmosi
             tput setaf 1; echo 'Input Your Home Directory Path'; tput sgr0
 	        read WORKINGDIRECTORY
 	        tput setaf 1; echo 'Your Home Directory $WORKINGDIRECTORY is now set'; tput sgr0
-
-#Akash cont...
             git clone https://github.com/ovrclk/akash
             cd akash 
             git checkout v0.14.1 
@@ -192,29 +190,6 @@ EOF
             tput setaf 3; echo 'Input Your Home Directory Path'; tput sgr0
 	        read WORKINGDIRECTORY
 	        tput setaf 3; echo 'Your Home Directory $WORKINGDIRECTORY is now set'; tput sgr0
-
-#Progress Bar
-            printf '\nStarting...\n'
-            function ProgressBar {
-            let _progress=(${1}*100/${2}*100)/100
-            let _done=(${_progress}*10)/10
-            let _left=100-$_done
-            _fill=$(printf "%${_done}s")
-            _empty=$(printf "%${_left}s")
-            tput setaf 3;
-            printf "\rProgress : [${_fill// /#}${_empty// /-}] ${_progress}%%"; tput sgr0
-            }           
-            _start=1
-            _end=100
-            for number in $(seq ${_start} ${_end})
-            do
-            sleep 0.1
-            ProgressBar ${number} ${_end}
-            done &&
-            printf "\n"
-
-
-#Chihuahua cont...
             git clone https://github.com/ChihuahuaChain/chihuahua.git
             cd chihuahua
             git checkout v1.1.1
@@ -267,30 +242,6 @@ EOF
             tput setaf 1; echo 'Input Your Home Directory Path'; tput sgr0
 	        read WORKINGDIRECTORY
 	        tput setaf 1; echo 'Your Home Directory $WORKINGDIRECTORY is now set'; tput sgr0
-
-
-#Starting Progress Bar
-            printf '\nStarting...\n'
-            function ProgressBar {
-            let _progress=(${1}*100/${2}*100)/100
-            let _done=(${_progress}*10)/10
-            let _left=100-$_done
-            _fill=$(printf "%${_done}s")
-            _empty=$(printf "%${_left}s")
-            tput setaf 1;
-            printf "\rProgress : [${_fill// /#}${_empty// /-}] ${_progress}%%"; tput sgr0
-            }           
-            _start=1
-            _end=100
-            for number in $(seq ${_start} ${_end})
-            do
-            sleep 0.1
-            ProgressBar ${number} ${_end}
-            done  &&
-            printf "\n"
-
-
-#Comdex cont...
             git clone https://github.com/comdex-official/comdex 
             cd comdex 
             git checkout v0.0.4
@@ -344,29 +295,6 @@ EOF
             tput setaf 3; echo 'Input Your Home Directory Path'; tput sgr0
 	        read WORKINGDIRECTORY
 	        tput setaf 3; echo 'Your Home Directory $WORKINGDIRECTORY is now set'; tput sgr0
-
-
-#Starting Progress Bar
-            printf '\nStarting...\n'
-            function ProgressBar {
-            let _progress=(${1}*100/${2}*100)/100
-            let _done=(${_progress}*10)/10
-            let _left=100-$_done
-            _fill=$(printf "%${_done}s")
-            _empty=$(printf "%${_left}s")
-            tput setaf 3;
-            printf "\rProgress : [${_fill// /#}${_empty// /-}] ${_progress}%%"; tput sgr0
-            }           
-            _start=1
-            _end=100
-            for number in $(seq ${_start} ${_end})
-            do
-            sleep 0.1
-            ProgressBar ${number} ${_end}
-            done  &&
-            printf "\n"
-
-#Dig cont...
             git clone https://github.com/notional-labs/dig 
             cd dig
             git checkout v1.1.0
@@ -420,29 +348,6 @@ EOF
             tput setaf 2; echo 'Input Your Home Directory Path'; tput sgr0
 	        read WORKINGDIRECTORY
 	        tput setaf 2; echo 'Your Home Directory $WORKINGDIRECTORY is now set'; tput sgr0
-
-
-#Starting Progress Bar
-            printf '\nStarting...\n'
-            function ProgressBar {
-            let _progress=(${1}*100/${2}*100)/100
-            let _done=(${_progress}*10)/10
-            let _left=100-$_done
-            _fill=$(printf "%${_done}s")
-            _empty=$(printf "%${_left}s")
-            tput setaf 2;
-            printf "\rProgress : [${_fill// /#}${_empty// /-}] ${_progress}%%"; tput sgr0
-            }           
-            _start=1
-            _end=100
-            for number in $(seq ${_start} ${_end})
-            do
-            sleep 0.1
-            ProgressBar ${number} ${_end}
-            done  &&
-            printf "\n"
-
-#e-Money cont...
             git clone https://github.com/e-money/em-ledger 
             cd em-ledger 
             git checkout v1.1.4 
@@ -496,29 +401,6 @@ EOF
             tput setaf 5; echo 'Input Your Home Directory Path'; tput sgr0
 	        read WORKINGDIRECTORY
 	        tput setaf 5; echo 'Your Home Directory $WORKINGDIRECTORY is now set'; tput sgr0
-
-
-#Starting Progress Bar
-            printf '\nStarting...\n'
-            function ProgressBar {
-            let _progress=(${1}*100/${2}*100)/100
-            let _done=(${_progress}*10)/10
-            let _left=100-$_done
-            _fill=$(printf "%${_done}s")
-            _empty=$(printf "%${_left}s")
-            tput setaf 5;
-            printf "\rProgress : [${_fill// /#}${_empty// /-}] ${_progress}%%"; tput sgr0
-            }           
-            _start=1
-            _end=100
-            for number in $(seq ${_start} ${_end})
-            do
-            sleep 0.1
-            ProgressBar ${number} ${_end}
-            done  &&
-            printf "\n"
-
-#OmniFlix cont...
             git clone https://github.com/OmniFlix/omniflixhub 
             cd omniflixhub 
             git checkout v0.4.0 
@@ -570,29 +452,6 @@ EOF
             tput setaf 4; echo 'Input Your Home Directory Path'; tput sgr0
 	        read WORKINGDIRECTORY
 	        tput setaf 4; echo 'Your Home Directory $WORKINGDIRECTORY is now set'; tput sgr0
-
-
-#Starting Progress Bar
-            printf '\nStarting...\n'
-            function ProgressBar {
-            let _progress=(${1}*100/${2}*100)/100
-            let _done=(${_progress}*10)/10
-            let _left=100-$_done
-            _fill=$(printf "%${_done}s")
-            _empty=$(printf "%${_left}s")
-            tput setaf 4;
-            printf "\rProgress : [${_fill// /#}${_empty// /-}] ${_progress}%%"; tput sgr0
-            }           
-            _start=1
-            _end=100
-            for number in $(seq ${_start} ${_end})
-            do
-            sleep 0.1
-            ProgressBar ${number} ${_end}
-            done  &&
-            printf "\n"
-
-#Osmosis cont...
             git clone https://github.com/osmosis-labs/osmosis 
             cd osmosis 
             git checkout v6.4.0
@@ -646,29 +505,6 @@ EOF
             tput setaf 6; echo 'Input Your Home Directory Path'; tput sgr0
 	        read WORKINGDIRECTORY
 	        tput setaf 6; echo 'Your Home Directory $WORKINGDIRECTORY is now set'; tput sgr0
-
-
-#Starting Progress Bar
-            printf '\nStarting...\n'
-            function ProgressBar {
-            let _progress=(${1}*100/${2}*100)/100
-            let _done=(${_progress}*10)/10
-            let _left=100-$_done
-            _fill=$(printf "%${_done}s")
-            _empty=$(printf "%${_left}s")
-            tput setaf 6;
-            printf "\rProgress : [${_fill// /#}${_empty// /-}] ${_progress}%%"; tput sgr0
-            }           
-            _start=1
-            _end=100
-            for number in $(seq ${_start} ${_end})
-            do
-            sleep 0.1
-            ProgressBar ${number} ${_end}
-            done  &&
-            printf "\n"
-
-#Sentinel cont...
             git clone https://github.com/sentinel-official/hub
             cd hub 
             git checkout v0.8.3 
