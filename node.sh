@@ -139,27 +139,6 @@ case `select_opt "Akash" "Chihuahua" "Comdex" "Dig" "e-Money" "OmniFlix" "Osmosi
 	        read WORKINGDIRECTORY
 	        tput setaf 1; echo 'Your Home Directory $WORKINGDIRECTORY is now set'; tput sgr0
 
-
-#Starting Progress Bar
-            printf '\nStarting...\n'
-            function ProgressBar {
-            let _progress=(${1}*100/${2}*100)/100
-            let _done=(${_progress}*10)/10
-            let _left=100-$_done
-            _fill=$(printf "%${_done}s")
-            _empty=$(printf "%${_left}s")
-            tput setaf 1;
-            printf "\rProgress : [${_fill// /#}${_empty// /-}] ${_progress}%%"; tput sgr0
-            }           
-            _start=1
-            _end=100
-            for number in $(seq ${_start} ${_end})
-            do
-            sleep 0.1
-            ProgressBar ${number} ${_end}
-            done  &&
-            printf "\n"
-
 #Akash cont...
             git clone https://github.com/ovrclk/akash
             cd akash 
