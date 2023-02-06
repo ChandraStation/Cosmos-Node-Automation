@@ -141,7 +141,7 @@ case `select_opt "Akash" "Chihuahua" "Comdex" "Dig" "e-Money" "OmniFlix" "Osmosi
 	        read WORKINGDIRECTORY
 	        tput setaf 1; echo 'Your Home Directory $WORKINGDIRECTORY is now set'; tput sgr0
             response=$(curl -s https://canto.api.chandrastation.com/node_info)
-            export AKASH_VERSION=$(echo $response | jq -r '.version')
+            export AKASH_VERSION=$(echo $response_akash | jq -r '.application_version.version')
             git clone https://github.com/ovrclk/akash
             cd akash 
             git checkout $AKASH_VERSION 
