@@ -140,9 +140,11 @@ case `select_opt "Akash" "Chihuahua" "Comdex" "Dig" "e-Money" "OmniFlix" "Osmosi
             tput setaf 1; echo 'Input Your Home Directory Path'; tput sgr0
 	        read WORKINGDIRECTORY
 	        tput setaf 1; echo 'Your Home Directory $WORKINGDIRECTORY is now set'; tput sgr0
+            response=$(curl -s https://canto.api.chandrastation.com/node_info)
+            export AKASH_VERSION=$(echo $response | jq -r '.version')
             git clone https://github.com/ovrclk/akash
             cd akash 
-            git checkout v0.14.1 
+            git checkout $AKASH_VERSION 
 	        make install 
             mv ~/go/bin/akash /usr/bin/ 
             akash init $NAME --chain-id akashnet-2 --home $WORKINGDIRECTORY/.akash/
