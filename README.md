@@ -11,7 +11,8 @@ Use this bash script to automate the installation and initilization of various C
 ```git clone https://github.com/ChandraStation/Validator-Automation
 cd Validator-Automation/
 chmod +x node.sh
-bash node.sh```
+bash node.sh
+```
 Simply follow the script prompts and select your answers
 
 
