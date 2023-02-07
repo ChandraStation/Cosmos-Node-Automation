@@ -7,8 +7,14 @@
 * 1TB NVME SSD
 
 ## Node Standup
+Use this bash script to automate the installation and initilization of various Cosmos Nodes. 
+```git clone https://github.com/ChandraStation/Validator-Automation
+cd Validator-Automation/
+chmod +x node.sh
+bash node.sh```
+Simply follow the script prompts and select your answers
 
-Use this bash script to automate the installation and initilization of various Cosmos Nodes. Simply follow the script prompts and select your answers
+
 ## Supported Networks
 * Akash
 * Canto - Missing
@@ -35,12 +41,11 @@ Use this bash script to automate the installation and initilization of various C
 - [x] ASCII
 - [x] Remove Yes/No
 - [x] Start snapshotting all supported networks
-- [ ] Add All networks mentioned above 
 - [x] Add Multi Network Select
 - [x] Add node name selection
 - [x] Add go back
+- [ ] Add All networks mentioned above (Missing: Evmos, Gravity, Kava, Passage, Stride)
 - [ ] Add Progress Bar
 - [ ] Create loop - Maybe
-- [ ] Add MacOS
-
+- [ ] API's needed (Dig, e-Money, Evmos, Gravity, Kava, Omniflix, Osmosis, Passage, Sentinel, Stride)
 
