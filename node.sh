@@ -142,7 +142,7 @@ case `select_opt "Akash" "Canto" "Chihuahua" "Comdex" "Dig" "e-Money" "Evmos" "G
             export AKASH_VERSION=$(echo $response_akash | jq -r '.application_version.version')
             git clone https://github.com/ovrclk/akash
             cd akash 
-            git checkout $AKASH_VERSION 
+            git checkout $AKASH_VERSION
 	        make install 
         mv ~/go/bin/akash /usr/bin/ 
         akash init $NAME --chain-id akashnet-2 --home $WORKINGDIRECTORY/.akash/
@@ -174,7 +174,7 @@ LimitMEMLOCK=209715200
 [Install]
 WantedBy=multi-user.target
 EOF
-        rm $WORKINGDIRECTORY/.akash/data/priv_validator_state.json 
+        rm $WORKINGDIRECTORY/.akash/data/
             wget http://135.181.60.250/akash/akashnet-2_$(date +"%Y-%m-%d").tar -P $WORKINGDIRECTORY/.akash/data 
             tar -xvf $WORKINGDIRECTORY/.akash/data/akashnet-2_$(date +"%Y-%m-%d").tar -C $WORKINGDIRECTORY/.akash/data/ 
         sudo systemctl daemon-reload 
