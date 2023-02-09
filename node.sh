@@ -200,6 +200,7 @@ EOF
 	    tput setaf 2; echo 'Your Home Directory $WORKINGDIRECTORY is now set'; tput sgr0
         #response_canto=$(curl -s https://canto.api.chandrastation.com/node_info)
             #export CANTO_VERSION=$(echo $response_canto | jq -r '.application_version.version')
+            git clone https://github.com/Canto-Network/Canto
             cd canto
             git checkout v5.0.0
             #git checkout $CANTO_VERSION
