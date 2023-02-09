@@ -147,7 +147,7 @@ case `select_opt "Akash" "Canto" "Chihuahua" "Comdex" "Dig" "e-Money" "Evmos" "G
         cp ~/go/bin/akash /usr/bin/ 
         akash init $NAME --chain-id akashnet-2 --home $WORKINGDIRECTORY/.akash/
         SNAP_RPC_1="https://akash-rpc.polkachu.com:443"
-        SNAP_RPC_2="https://akash-rpc.polkachu.com:443"
+        SNAP_RPC_2="http://akashsentry01.skynetvalidators.com:26657"
         LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
         BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
         TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
@@ -179,18 +179,11 @@ LimitMEMLOCK=209715200
 [Install]
 WantedBy=multi-user.target
 EOF
-        rm $WORKINGDIRECTORY/.akash/data/
-            wget https://snapshots.polkachu.com/snapshots/akash/akash_9687949.tar.lz4 -P $WORKINGDIRECTORY/.akash/
-            lz4 $WORKINGDIRECTORY/.akash/akash_9687949.tar.lz4 
-            tar -xvf $WORKINGDIRECTORY/.akash/akash_9687949.tar -C $WORKINGDIRECTORY/.akash/
-            rm $WORKINGDIRECTORY/.akash/akash_9687949.tar.lz4
-            rm $WORKINGDIRECTORY/.akash/akash_9687949.tar 
-            #wget http://135.181.60.250/akash/akashnet-2_$(date +"%Y-%m-%d").tar -P $WORKINGDIRECTORY/.akash/data 
-            #tar -xvf $WORKINGDIRECTORY/.akash/data/akashnet-2_$(date +"%Y-%m-%d").tar -C $WORKINGDIRECTORY/.akash/data/ 
+
         sudo systemctl daemon-reload 
         sudo systemctl enable akash
         sudo systemctl start akash
-	    tput setaf 1; echo 'Congrats your node is now syncing with the network'; tput sgr0;;
+	    tput setaf 1; echo 'Congrats your node is now syncing with the network | Check the logs with `journalctl -u akash -f --no-hostname -o cat`'; tput sgr0;;
 
 #CANTO    
     1)  tput setaf 2; echo 'What would you like your node name to be?'; tput sgr0
