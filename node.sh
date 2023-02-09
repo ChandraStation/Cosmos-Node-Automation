@@ -215,7 +215,7 @@ EOF
             sed -i 's/address = "0.0.0.0:9091"/address = "0.0.0.0:5191"/g' $WORKINGDIRECTORY/.cantod/config/app.toml
             sed -i 's/address = "0.0.0.0:8545"/address = "0.0.0.0:5145"/g' $WORKINGDIRECTORY/.cantod/config/app.toml
             sed -i 's/ws-address = "0.0.0.0:8546"/ws-address = "0.0.0.0:5146"/g' $WORKINGDIRECTORY/.cantod/config/app.toml
-            sed -i 's/minimum-gas-prices = "0stake"/minimum-gas-prices = "4000000000000acanto"/g' $WORKINGDIRECTORY/.cantod/config/app.toml 
+            sed -i 's/minimum-gas-prices = "0acanto"/minimum-gas-prices = "4000000000000acanto"/g' $WORKINGDIRECTORY/.cantod/config/app.toml 
         sudo rm $WORKINGDIRECTORY/.cantod/config/genesis.json 
             wget -O genesis.json https://snapshots.polkachu.com/genesis/canto/genesis.json --inet4-only -P $WORKINGDIRECTORY/.cantod/config/ 
             cat << EOF > /etc/systemd/system/cantod.service 
