@@ -202,7 +202,7 @@ EOF
             #export CANTO_VERSION=$(echo $response_canto | jq -r '.application_version.version')
             git clone https://github.com/Canto-Network/Canto 
             cd Canto/
-            git checkout v4.0.0
+            git checkout v5.0.0
             #git checkout $CANTO_VERSION
             make install
         cp ~/go/bin/cantod /usr/bin/
