@@ -1,51 +1,52 @@
 # Repo for automating the setup of a validator server
 
 ## Dependencies
-* Any Linux Distro 
-* 6 core + CPU (AMD)
+* **Basically** Any Linux Distro 
+* 6 core + CPU (AMD Preferred)
 * 16GB RAM
 * 1TB NVME SSD
 
 ## Node Standup
 Use this bash script to automate the installation and initilization of various Cosmos Nodes. 
-```git clone https://github.com/ChandraStation/Validator-Automation
+git clone https://github.com/ChandraStation/Validator-Automation
 cd Validator-Automation/
 bash node.sh
-```
-Simply follow the script prompts and select your answers
+Simply follow the script prompts and select/input your answers
 
+### Quickstart Guide
+- $WORKING_DIRECTORY = Where you would like your node config and data files to be located.
+- $USER = Your machines current user.
+- $NODE_NAME = Your nodes moniker.
+- Nodes are synced using statesync (Currently we are using [Polkachu](https://polkachu.com) but we will begin to rollout our own statesync infra on certain networks.)
+- Ports are left stock, if you would like to sync multiple nodes on the same machine, simply change the ports after installation and restart your node
+- Commands to note :
+    * systemctl start <network> (This starts your node)
+    * systemctl restart <network> (This restarts your node)
+    * journalctl -u <network> -f (This shows your nodes logs)
 
 ## Supported Networks
 * Akash
-* Canto - Missing
+* Canto 
 * Chihuahua
 * Comdex
-* Dig
-* e-Money
-* Evmos - Missing
-* Gravity - Missing
-* Kava - Missing
-* OmniFlix
+* Evmos
+* Gravity
+* Kava
 * Osmosis
-* Passage - Missing
-* Sentinel
-* Stride - Missing
+* Passage
+* Stride
 
 
-(Feel free to upkeep the repo with up to date links to genesis & software versions while we automate those processes)
-
-## To do List
-
+## To Do List
 - [x] Add OS Select
 - [x] Iterate remainder of networks
 - [x] ASCII
 - [x] Remove Yes/No
-- [x] Start snapshotting all supported networks
+- [ ] Start snapshotting/statesynbcing all supported networks
 - [x] Add Multi Network Select
 - [x] Add node name selection
 - [x] Add go back
-- [ ] Add All networks mentioned above (Missing: Evmos, Gravity, Kava, Passage, Stride)
 - [ ] Add Progress Bar
-- [ ] Create loop - Maybe
-- [ ] API's needed (Dig, e-Money, Evmos, Gravity, Kava, Omniflix, Osmosis, Passage, Sentinel, Stride)
 
+## Adding A Network
+Make a request by submitting an issue :) or if you get it make a PR to the main branch.
