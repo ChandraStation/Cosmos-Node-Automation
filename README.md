@@ -48,6 +48,7 @@ Simply follow the script prompts and select/input your answers
 - [x] Add node name selection
 - [x] Add go back
 - [ ] Add Progress Bar
+- [ ] Add Testing
 
 ## Adding A Network
 Make a request by submitting an issue :) or if you get it make a PR to the main branch.
