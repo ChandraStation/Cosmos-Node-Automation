@@ -10,8 +10,9 @@
 Use this bash script to automate the installation and initilization of various Cosmos Nodes. 
 git clone https://github.com/ChandraStation/Validator-Automation
 cd Validator-Automation/
-bash node.sh
+./node.sh
 Simply follow the script prompts and select/input your answers
+**RUN AS ROOT OR AUTHENTICATE WITH SUDO BEFORE RUNNING**
 
 ### Quickstart Guide
 - $WORKING_DIRECTORY = Where you would like your node config and data files to be located.
@@ -47,6 +48,7 @@ Simply follow the script prompts and select/input your answers
 - [x] Add node name selection
 - [x] Add go back
 - [ ] Add Progress Bar
+- [ ] Add Testing
 
 ## Adding A Network
 Make a request by submitting an issue :) or if you get it make a PR to the main branch.
