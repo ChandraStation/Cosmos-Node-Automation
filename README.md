@@ -7,9 +7,9 @@
 * 1TB NVME SSD
 
 ## Node Standup
-Use this bash script to automate the installation and initilization of various Cosmos Nodes. 
+Use this bash script to automate the installation and initilization of various Cosmos Nodes.
+```bash
 git clone https://github.com/ChandraStation/Validator-Automation
-```
 cd Validator-Automation/
 ./node.sh
 ```
