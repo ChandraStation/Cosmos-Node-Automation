@@ -9,8 +9,10 @@
 ## Node Standup
 Use this bash script to automate the installation and initilization of various Cosmos Nodes. 
 git clone https://github.com/ChandraStation/Validator-Automation
+```
 cd Validator-Automation/
 ./node.sh
+```
 Simply follow the script prompts and select/input your answers
 **RUN AS ROOT OR AUTHENTICATE WITH SUDO BEFORE RUNNING**
 
