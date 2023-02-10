@@ -126,7 +126,7 @@ function select_opt {
     return $result
 }
 
-case `select_opt "Akash" "Canto" "Chihuahua" "Comdex" "Dig" "e-Money" "Evmos" "Gravity" "Kava" "OmniFlix" "Osmosis" "Passage" "Sentinel" "Stride" "Cancel"` in
+case `select_opt "Akash" "Canto" "Chihuahua" "Comdex" "Evmos" "Gravity" "Kava" "Osmosis" "Passage" "Stride" "Cancel"` in
     
 #AKASH = DONE
     0)  tput setaf 1; echo 'What would you like your node name to be?'; tput sgr0
