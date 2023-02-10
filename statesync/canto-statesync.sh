@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SNAP_RPC="https://akash-canto.polkachu.com:443"
+SNAP_RPC="https://canto-rpc.polkachu.com:443"
 
 LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
 BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
