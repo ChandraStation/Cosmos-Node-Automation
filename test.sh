@@ -130,11 +130,11 @@ my_array= (Akash Canto Chihuahua Comdex Evmos Gravity Kava Osmosis Passage Strid
 
 case `select_opt "Mainnet" "Backup" "Relayer" "Cancel"` in
     0)  
-        tput setaf 1: echo 'Where is this directory saved at (example /root/github-repos/Validatorautomation)'; tput sgr0
+        echo 'Where is this directory saved at (example /root/github-repos/Validatorautomation)'; 
             read DIRECTORY
             cp $DIRECTORY/inventory.sample $DIRECTORY/inventory    
         printf '%s\n' "${my_array[@]}"
-        tput setaf 1: echo "What network will this node be for"
+        echo "What network will this node be for"
             read NETWORK
             sudo sed -i '[juno]/[$NETWORK]' $DIRECTORY/inventory
             sudo sed -i 'juno_main/$NETWORK_main' $DIRECTORY/inventory
@@ -144,23 +144,24 @@ case `select_opt "Mainnet" "Backup" "Relayer" "Cancel"` in
             sudo sed -i 'juno_tenderduty/$NETWORK_tenderduty' $DIRECTORY/inventory
             sudo sed -i 'promtail=true/promtail=false' $DIRECTORY/inventory
             sudo sed -i 'node_exporter=true/node_exporter=false' $DIRECTORY/inventory
-        tput setaf 1; echo 'Input Your System Username, This user will need sudo privilege'; tput sgr0 
+        echo 'Input Your System Username, This user will need sudo privilege'; tput sgr0 
             read USERNAME
                 sudo sed -i 'ansible_user=ubuntu/ansible_user=$USERNAME' $DIRECTORY/inventory
-        tput setaf 1; echo 'Input your port, the default is set to 22'
+        echo 'Input your port, the default is set to 22'
             read PORT 
                 sudo sed -i 'ansible_port=22/ansible_port=$PORT' $DIRECTORY/inventory
-        tput setaf 1; echo 'Input your ssh key directory, it is set to ~/.ssh/id_rsa by default'
+        echo 'Input your ssh key directory, it is set to ~/.ssh/id_rsa by default'
             read SSH_DIRECTORY
                 sudo sed -i 'ansible_ssh_private_key_file="~/.ssh/id_rsa"/ansible_ssh_private_key_file="$SSH_DIRECTORY"' $DIRECTORY/inventory
-        tput setaf 1; echo 'Input your User Directory (example /home/user) Assumes that its not a root user and its a home directory'
+        echo 'Input your User Directory (example /home/user) Assumes that its not a root user and its a home directory'
             read USER_DIRECTORY
                 sudo sed -i 'user_dir="/home/{{ansible_user}}"/user_dir="$USER_DIRECTORY"' $DIRECTORY/inventory
-        tput setaf 1; echo 'What would you like your node name to be?'; tput sgr0
+        echo 'What would you like your node name to be?'; 
 	        read NAME
                 sudo sed -i 'node_name="BRAND-{{ network }}-{{ type }}/node_name="$NAME"' $DIRECTORY/inventory
 
-        tput setaf 1; echo 'Input Your Home Directory Path'; tput sgr0
+        echo 'Input Your Home Directory Path'; 
 
+esac
 
-        sudo sed -i 's/minimum-gas-prices = "0acanto"/minimum-gas-prices = "4000000000000acanto"/g' $WORKINGDIRECTORY/.cantod/config/app.toml
+sudo sed -i 's/minimum-gas-prices = "0acanto"/minimum-gas-prices = "4000000000000acanto"/g' $WORKINGDIRECTORY/.cantod/config/app.toml
