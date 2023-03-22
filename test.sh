@@ -129,8 +129,8 @@ function select_opt {
 my_array=(Akash Canto Chihuahua Comdex Evmos Gravity Kava Osmosis Passage Stride)
 
 case `select_opt "Mainnet" "Backup" "Relayer" "Cancel"` in
-    0)  
-        echo 'Where is this directory saved at (example /root/github-repos/Validatorautomation)'; 
+    #Mainnet
+    0)  echo 'Where is this directory saved at (example /root/github-repos/Validatorautomation)'; 
             read DIRECTORY
             cp $DIRECTORY/inventory.sample $DIRECTORY/inventory    
         printf '%s\n' "${my_array[@]}"
@@ -144,7 +144,7 @@ case `select_opt "Mainnet" "Backup" "Relayer" "Cancel"` in
             sudo sed -i 'juno_tenderduty/$NETWORK_tenderduty' $DIRECTORY/inventory
             sudo sed -i 'promtail=true/promtail=false' $DIRECTORY/inventory
             sudo sed -i 'node_exporter=true/node_exporter=false' $DIRECTORY/inventory
-        echo 'Input Your System Username, This user will need sudo privilege'; tput sgr0 
+        echo 'Input Your System Username, This user will need sudo privilege';  
             read USERNAME
                 sudo sed -i 'ansible_user=ubuntu/ansible_user=$USERNAME' $DIRECTORY/inventory
         echo 'Input your port, the default is set to 22'
@@ -161,6 +161,72 @@ case `select_opt "Mainnet" "Backup" "Relayer" "Cancel"` in
                 sudo sed -i 'node_name="BRAND-{{ network }}-{{ type }}/node_name="$NAME"' $DIRECTORY/inventory
 
         echo 'Input Your Home Directory Path'; 
+
+    #Testnet
+    1)  echo 'Where is this directory saved at (example /root/github-repos/Validatorautomation)'; 
+            read DIRECTORY
+            cp $DIRECTORY/inventory_testnet.sample $DIRECTORY/inventory_testnet    
+        printf '%s\n' "${my_array[@]}"
+        echo "What network will this node be for"
+            read NETWORK
+            sudo sed -i '[juno]/[$NETWORK]' $DIRECTORY/inventory_testnet 
+            sudo sed -i 'juno_main/$NETWORK_main' $DIRECTORY/inventory_testnet 
+            sudo sed -i 'juno_backup/$NETWORK_backup' $DIRECTORY/inventory_testnet 
+            sudo sed -i 'juno_relayer/$NETWORK_relayer' $DIRECTORY/inventory_testnet 
+            sudo sed -i 'juno_seed/$NETWORK_seed' $DIRECTORY/inventory_testnet 
+            sudo sed -i 'juno_tenderduty/$NETWORK_tenderduty' $DIRECTORY/inventory_testnet 
+            sudo sed -i 'promtail=true/promtail=false' $DIRECTORY/inventory_testnet 
+            sudo sed -i 'node_exporter=true/node_exporter=false' $DIRECTORY/inventory_testnet 
+        echo 'Input Your System Username, This user will need sudo privilege';  
+            read USERNAME
+                sudo sed -i 'ansible_user=ubuntu/ansible_user=$USERNAME' $DIRECTORY/inventory_testnet 
+        echo 'Input your port, the default is set to 22'
+            read PORT 
+                sudo sed -i 'ansible_port=22/ansible_port=$PORT' $DIRECTORY/inventory_testnet 
+        echo 'Input your ssh key directory, it is set to ~/.ssh/id_rsa by default'
+            read SSH_DIRECTORY
+                sudo sed -i 'ansible_ssh_private_key_file="~/.ssh/id_rsa"/ansible_ssh_private_key_file="$SSH_DIRECTORY"' $DIRECTORY/inventory_testnet 
+        echo 'Input your User Directory (example /home/user) Assumes that its not a root user and its a home directory'
+            read USER_DIRECTORY
+                sudo sed -i 'user_dir="/home/{{ansible_user}}"/user_dir="$USER_DIRECTORY"' $DIRECTORY/inventory_testnet 
+        echo 'What would you like your node name to be?'; 
+	        read NAME
+                sudo sed -i 'node_name="BRAND-{{ network }}-{{ type }}/node_name="$NAME"' $DIRECTORY/inventory_testnet 
+
+        echo 'Input Your Home Directory Path';
+
+    #Relayer
+    2)  echo 'Where is this directory saved at (example /root/github-repos/Validatorautomation)'; 
+            read DIRECTORY
+            cp $DIRECTORY/inventory.sample $DIRECTORY/inventory    
+        printf '%s\n' "${my_array[@]}"
+        echo "What network will this node be for"
+            read NETWORK
+            sudo sed -i '[juno]/[$NETWORK]' $DIRECTORY/inventory
+            sudo sed -i 'juno_main/$NETWORK_main' $DIRECTORY/inventory
+            sudo sed -i 'juno_backup/$NETWORK_backup' $DIRECTORY/inventory
+            sudo sed -i 'juno_relayer/$NETWORK_relayer' $DIRECTORY/inventory
+            sudo sed -i 'juno_seed/$NETWORK_seed' $DIRECTORY/inventory
+            sudo sed -i 'juno_tenderduty/$NETWORK_tenderduty' $DIRECTORY/inventory
+            sudo sed -i 'promtail=true/promtail=false' $DIRECTORY/inventory
+            sudo sed -i 'node_exporter=true/node_exporter=false' $DIRECTORY/inventory
+        echo 'Input Your System Username, This user will need sudo privilege'; 
+            read USERNAME
+                sudo sed -i 'ansible_user=ubuntu/ansible_user=$USERNAME' $DIRECTORY/inventory
+        echo 'Input your port, the default is set to 22'
+            read PORT 
+                sudo sed -i 'ansible_port=22/ansible_port=$PORT' $DIRECTORY/inventory
+        echo 'Input your ssh key directory, it is set to ~/.ssh/id_rsa by default'
+            read SSH_DIRECTORY
+                sudo sed -i 'ansible_ssh_private_key_file="~/.ssh/id_rsa"/ansible_ssh_private_key_file="$SSH_DIRECTORY"' $DIRECTORY/inventory
+        echo 'Input your User Directory (example /home/user) Assumes that its not a root user and its a home directory'
+            read USER_DIRECTORY
+                sudo sed -i 'user_dir="/home/{{ansible_user}}"/user_dir="$USER_DIRECTORY"' $DIRECTORY/inventory
+        echo 'What would you like your node name to be?'; 
+	        read NAME
+                sudo sed -i 'node_name="BRAND-{{ network }}-{{ type }}/node_name="$NAME"' $DIRECTORY/inventory
+
+        echo 'Input Your Home Directory Path';
 
 esac
 
