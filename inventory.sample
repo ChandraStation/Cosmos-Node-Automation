@@ -1,0 +1,31 @@
+[mainnets]
+mainnet1 ansible_host=10.0.0.1
+
+[backups]
+backup1 ansible_host=10.0.0.1
+
+[relayers]
+relayer1 ansible_host=10.0.0.3
+
+[juno]
+juno_main ansible_host=10.0.0.1 type=main
+juno_backup ansible_host=10.0.0.2 type=backup prepare=false
+juno_relayer ansible_host=10.0.0.3 type=relayer prepare=false
+juno_seed ansible_host=10.0.0.4
+juno_tenderduty ansible_host=10.0.0.5 target_ip=10.0.0.3
+
+[all:vars]
+ansible_user=ubuntu
+ansible_port=22
+ansible_ssh_private_key_file="~/.ssh/id_rsa"
+var_file="group_vars/mainnets/{{ group_names[0] }}.yml"
+user_dir="/home/{{ansible_user}}"
+path="/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/bin:/usr/local/go/bin:{{ user_dir }}/go/bin"
+node_exporter=true
+promtail=true
+log_monitor=http://10.0.0.100:3100
+node_name="BRAND-{{ network }}-{{ type }}"
+log_name="PREFIX_{{ network }}_{{ type }}"
+snapshot_endpoint='http://10.0.0.2000'
+
+pagerduty_key="SECRET_KEY"
