@@ -126,7 +126,7 @@ function select_opt {
     return $result
 }
 
-my_array= (Akash Canto Chihuahua Comdex Evmos Gravity Kava Osmosis Passage Stride)
+my_array=(Akash Canto Chihuahua Comdex Evmos Gravity Kava Osmosis Passage Stride)
 
 case `select_opt "Mainnet" "Backup" "Relayer" "Cancel"` in
     0)  
