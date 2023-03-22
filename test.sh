@@ -130,7 +130,7 @@ my_array=(Akash Canto Chihuahua Comdex Evmos Gravity Kava Osmosis Passage Stride
 
 case `select_opt "Mainnet" "Backup" "Relayer" "Cancel"` in
     #Mainnet
-    0)  echo 'Where is this directory saved at (example /root/github-repos/Validatorautomation)'; 
+    0)  echo 'Where is this directory saved at (example /root/github-repos/Validatorautomation)' 
             read DIRECTORY
             cp $DIRECTORY/inventory.sample $DIRECTORY/inventory    
         printf '%s\n' "${my_array[@]}"
@@ -144,7 +144,7 @@ case `select_opt "Mainnet" "Backup" "Relayer" "Cancel"` in
             sudo sed -i 'juno_tenderduty/$NETWORK_tenderduty' $DIRECTORY/inventory
             sudo sed -i 'promtail=true/promtail=false' $DIRECTORY/inventory
             sudo sed -i 'node_exporter=true/node_exporter=false' $DIRECTORY/inventory
-        echo 'Input Your System Username, This user will need sudo privilege';  
+        echo 'Input Your System Username, This user will need sudo privilege'  
             read USERNAME
                 sudo sed -i 'ansible_user=ubuntu/ansible_user=$USERNAME' $DIRECTORY/inventory
         echo 'Input your port, the default is set to 22'
@@ -196,7 +196,7 @@ case `select_opt "Mainnet" "Backup" "Relayer" "Cancel"` in
         echo 'Input Your Home Directory Path';
 
     #Relayer
-    2)  echo 'Where is this directory saved at (example /root/github-repos/Validatorautomation)'; 
+    2)  echo 'Where is this directory saved at (example /root/github-repos/Validatorautomation)'
             read DIRECTORY
             cp $DIRECTORY/inventory.sample $DIRECTORY/inventory    
         printf '%s\n' "${my_array[@]}"
@@ -210,7 +210,7 @@ case `select_opt "Mainnet" "Backup" "Relayer" "Cancel"` in
             sudo sed -i 'juno_tenderduty/$NETWORK_tenderduty' $DIRECTORY/inventory
             sudo sed -i 'promtail=true/promtail=false' $DIRECTORY/inventory
             sudo sed -i 'node_exporter=true/node_exporter=false' $DIRECTORY/inventory
-        echo 'Input Your System Username, This user will need sudo privilege'; 
+        echo 'Input Your System Username, This user will need sudo privilege' 
             read USERNAME
                 sudo sed -i 'ansible_user=ubuntu/ansible_user=$USERNAME' $DIRECTORY/inventory
         echo 'Input your port, the default is set to 22'
