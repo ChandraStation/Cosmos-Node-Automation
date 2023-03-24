@@ -160,10 +160,10 @@ case `select_opt "Mainnet" "Backup" "Relayer" "Cancel"` in
 	        read NAME
                 sudo sed -i 'node_name="BRAND-{{ network }}-{{ type }}/node_name="$NAME"' $DIRECTORY/inventory
 
-        echo 'Input Your Home Directory Path'; 
+        echo 'Input Your Home Directory Path';;
 
     #Testnet
-    1)  echo 'Where is this directory saved at (example /root/github-repos/Validatorautomation)'; 
+    1)  echo 'Where is this directory saved at (example /root/github-repos/Validatorautomation)' 
             read DIRECTORY
             cp $DIRECTORY/inventory_testnet.sample $DIRECTORY/inventory_testnet    
         printf '%s\n' "${my_array[@]}"
@@ -189,11 +189,11 @@ case `select_opt "Mainnet" "Backup" "Relayer" "Cancel"` in
         echo 'Input your User Directory (example /home/user) Assumes that its not a root user and its a home directory'
             read USER_DIRECTORY
                 sudo sed -i 'user_dir="/home/{{ansible_user}}"/user_dir="$USER_DIRECTORY"' $DIRECTORY/inventory_testnet 
-        echo 'What would you like your node name to be?'; 
+        echo 'What would you like your node name to be?' 
 	        read NAME
                 sudo sed -i 'node_name="BRAND-{{ network }}-{{ type }}/node_name="$NAME"' $DIRECTORY/inventory_testnet 
 
-        echo 'Input Your Home Directory Path';
+        echo 'Input Your Home Directory Path';;
 
     #Relayer
     2)  echo 'Where is this directory saved at (example /root/github-repos/Validatorautomation)'
@@ -222,11 +222,11 @@ case `select_opt "Mainnet" "Backup" "Relayer" "Cancel"` in
         echo 'Input your User Directory (example /home/user) Assumes that its not a root user and its a home directory'
             read USER_DIRECTORY
                 sudo sed -i 'user_dir="/home/{{ansible_user}}"/user_dir="$USER_DIRECTORY"' $DIRECTORY/inventory
-        echo 'What would you like your node name to be?'; 
+        echo 'What would you like your node name to be?'
 	        read NAME
                 sudo sed -i 'node_name="BRAND-{{ network }}-{{ type }}/node_name="$NAME"' $DIRECTORY/inventory
 
-        echo 'Input Your Home Directory Path';
+        echo 'Input Your Home Directory Path';;
 
 esac
 
